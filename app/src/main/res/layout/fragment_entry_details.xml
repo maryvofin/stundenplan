@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:padding="5dp">
+
+    <TextView
+        android:id="@+id/fragment_entry_details_semester_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_details_activity_tab_details_semester"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/fragment_entry_details_semester_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_semester_h"
+        />
+
+    <TextView
+        android:id="@+id/fragment_entry_details_module_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_semester_t"
+        android:text="@string/text_details_activity_tab_details_module"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/fragment_entry_details_module_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_module_h"
+        />
+
+    <TextView
+        android:id="@+id/fragment_entry_details_eventtype_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_module_t"
+        android:text="@string/text_details_activity_tab_details_eventtype"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/fragment_entry_details_eventtype_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_eventtype_h"
+        />
+
+    <TextView
+        android:id="@+id/fragment_entry_details_group_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_eventtype_t"
+        android:text="@string/text_details_activity_tab_details_group"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/fragment_entry_details_group_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_group_h"
+        />
+
+    <TextView
+        android:id="@+id/fragment_entry_details_timespan_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_group_t"
+        android:text="@string/text_details_activity_tab_details_timespan"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/fragment_entry_details_timespan_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_timespan_h"
+        />
+
+    <TextView
+        android:id="@+id/fragment_entry_details_weekday_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_timespan_t"
+        android:text="@string/text_details_activity_tab_details_weekday"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/fragment_entry_details_weekday_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_weekday_h"
+        />
+
+    <TextView
+        android:id="@+id/fragment_entry_details_time_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_weekday_t"
+        android:text="@string/text_details_activity_tab_details_time"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/fragment_entry_details_time_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_time_h"
+        />
+
+    <TextView
+        android:id="@+id/fragment_entry_details_lecturer_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_time_t"
+        android:text="@string/text_details_activity_tab_details_lecturer"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/fragment_entry_details_lecturer_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_lecturer_h"
+        />
+
+    <TextView
+        android:id="@+id/fragment_entry_details_room_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_lecturer_t"
+        android:text="@string/text_details_activity_tab_details_room"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/fragment_entry_details_room_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_entry_details_room_h"
+        />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

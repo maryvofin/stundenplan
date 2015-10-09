@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">Stundenplan</string>
+
+    <string name="action_settings">Auswahl</string>
+    <string name="text_activity_groupselection_button">OK</string>
+
+    <string name="text_vorlesung">Vorlesung</string>
+    <string name="text_uebung">Übung</string>
+    <string name="text_praktikum">Praktikum</string>
+    <string name="text_projekt">Projekt</string>
+    <string name="text_seminar">Seminar</string>
+    <string name="text_hour">Stunde</string>
+    <string name="text_hour_pl">Stunden</string>
+    <string name="text_minute">Minute</string>
+    <string name="text_minute_pl">Minuten</string>
+    <string name="text_pause">Pause</string>
+
+    <string name="text_settings_updateinterval">Aktualisierungsintervall: </string>
+    <string-array name="text_settings_updateinterval_choices">
+        <item>1 Stunde</item>
+        <item>1 Tag</item>
+    </string-array>
+
+    <string-array name="text_details_activity_tabslabels">
+        <item>Details</item>
+        <item>Alternativen</item>
+    </string-array>
+
+    <string name="text_activity_main_leftdrawer_profile">Profil:</string>
+    <string name="text_activity_main_leftdrawer_choice">Auswahl:</string>
+
+    <string name="text_details_activity_tab_details_semester">Studiengang/Semester:</string>
+    <string name="text_details_activity_tab_details_module">Modul:</string>
+    <string name="text_details_activity_tab_details_eventtype">Veranstaltungsart:</string>
+    <string name="text_details_activity_tab_details_group">Gruppe:</string>
+    <string name="text_details_activity_tab_details_timespan">Zeitraum:</string>
+    <string name="text_details_activity_tab_details_weekday">Wochentag:</string>
+    <string name="text_details_activity_tab_details_time">Uhrzeit:</string>
+    <string name="text_details_activity_tab_details_lecturer">Dozent:</string>
+    <string name="text_details_activity_tab_details_room">Raum:</string>
+
+
+
+    <string name="text_dialog_info_title">Info</string>
+    <string name="text_dialog_info_version_header">Version:</string>
+    <string name="text_dialog_info_responsible_header">Verantworlicher für diese App:</string>
+    <string name="text_dialog_info_responsible_text">Mark Freiberg\nEuroparing 86\n53757 Sankt-Augustin</string>
+    <string name="text_dialog_info_contact_header">Kontakt:</string>
+    <string name="text_dialog_info_contact_text">mark.freiberg@maryvofin.de</string>
+    <string name="text_dialog_info_hints_header">Hinweise:</string>
+    <string name="text_dialog_info_hints_text">Diese App findet sich noch in der Entwicklung. Per Email oder Absturzbericht eingereichte Fehler werden nach möglichkeit zeitnah behoben.</string>
+    <string name="text_dialog_info_button">OK</string>
+
+    <string name="activity_title_settings">Einstellungen</string>
+
+    <string name="no_events">Keine Veranstaltungen gefunden</string>
+
+    <string name="text_updating">aktualisiere</string>
+    <string name="text_last_update">letztes Update</string>
+    <string name="text_clock">Uhr</string>
+    <string name="text_no_update">-</string>
+
+    <color name="color_divider">#00ACFF</color>
+    <color name="textcolor_pageheader">#00ACFF</color>
+    <color name="bgcolor_activity_main_leftDrawer">#DDDDDD</color>
+    <color name="bgcolor_entry_past">#DDDDDD</color>
+    <color name="textcolor_entry_past">#CCC514</color>
+    <color name ="textcolor_entry_current">#00ACFF</color>
+    <color name ="textcolor_entry_intersects">#D27237</color>
+    <color name="textcolor_no_events">#BBBBBB</color>
+    <color name="textcolor_pause_entry">#BBBBBB</color>
+</resources>
