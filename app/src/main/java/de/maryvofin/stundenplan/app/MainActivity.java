@@ -8,6 +8,7 @@ import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v4.view.ClickablePagerTabStrip;
@@ -111,6 +112,14 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                             }
                         });
                 db.show();
+            }
+        });
+
+        final View shareButton = findViewById(R.id.activity_main_button_share);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openShareActivity();
             }
         });
 
@@ -221,6 +230,14 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
 
         setDrawerListeners();
 
+    }
+
+    public void openShareActivity() {
+        Intent intent = new Intent(this, ShareActivity.class);
+        /*Bundle args = new Bundle();
+        args.putSerializable("entry",entry);
+        intent.putExtras(args);*/
+        this.startActivity(intent);
     }
 
     public void prepareUpdateIntervalSpinner() {

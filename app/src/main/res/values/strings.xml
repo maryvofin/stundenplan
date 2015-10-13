@@ -25,6 +25,8 @@
     <string name="text_profile_new">Neu</string>
     <string name="text_profile_delete_question">Profil wirklich löschen?</string>
 
+    <string name="text_share_activity_title">Profilaustausch</string>
+
     <string-array name="text_details_activity_tabslabels">
         <item>Details</item>
         <item>Alternativen</item>
