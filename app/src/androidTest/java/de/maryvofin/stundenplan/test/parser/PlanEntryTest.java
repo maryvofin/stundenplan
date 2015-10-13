@@ -7,7 +7,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.maryvofin.stundenplan.database.PlanEntry;
+import de.maryvofin.stundenplan.app.database.PlanEntry;
 
 /**
  * Created by mark on 30.09.2015.

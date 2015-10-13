@@ -1,11 +1,9 @@
-package de.maryvofin.stundenplan;
+package de.maryvofin.stundenplan.app;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
-import de.maryvofin.stundenplan.parser.Parser;
+import de.maryvofin.stundenplan.app.parser.Parser;
 
 import static android.content.SharedPreferences.*;
 

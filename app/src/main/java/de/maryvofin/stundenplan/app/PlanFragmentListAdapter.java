@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan;
+package de.maryvofin.stundenplan.app;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,8 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.List;
 
-import de.maryvofin.stundenplan.database.PlanEntry;
+import de.maryvofin.stundenplan.app.DetailsActivity;
+import de.maryvofin.stundenplan.app.database.PlanEntry;
 
 /**
  * Created by mark on 04.10.2015.
@@ -24,7 +25,7 @@ public class PlanFragmentListAdapter extends ArrayAdapter<PlanEntry> {
     int futurepast;
 
     public PlanFragmentListAdapter(Activity context, List<PlanEntry> entries, int futurepast) {
-        super(context,R.layout.view_planentry,entries);
+        super(context, R.layout.view_planentry,entries);
         this.entries = entries;
         this.activity = context;
         this.futurepast = futurepast;

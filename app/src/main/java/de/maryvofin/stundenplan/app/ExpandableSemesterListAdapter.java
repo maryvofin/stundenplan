@@ -1,7 +1,6 @@
-package de.maryvofin.stundenplan;
+package de.maryvofin.stundenplan.app;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +13,14 @@ import android.widget.TextView;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.maryvofin.stundenplan.database.Database;
-import de.maryvofin.stundenplan.database.PlanEntry;
-import de.maryvofin.stundenplan.database.Profile;
-import de.maryvofin.stundenplan.database.Semester;
+import de.maryvofin.stundenplan.app.database.Database;
+import de.maryvofin.stundenplan.app.database.PlanEntry;
+import de.maryvofin.stundenplan.app.database.Profile;
+import de.maryvofin.stundenplan.app.database.Semester;
 
 /**
  * Created by mark on 01.10.2015.

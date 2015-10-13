@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:tabMode="scrollable" />
 
-    <de.maryvofin.stundenplan.ViewPager
+    <de.maryvofin.stundenplan.app.ViewPager
         android:id="@+id/activity_details_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0px"

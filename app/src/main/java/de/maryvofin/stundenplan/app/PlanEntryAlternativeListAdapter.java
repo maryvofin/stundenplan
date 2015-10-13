@@ -1,7 +1,6 @@
-package de.maryvofin.stundenplan;
+package de.maryvofin.stundenplan.app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import de.maryvofin.stundenplan.database.PlanEntry;
+import de.maryvofin.stundenplan.app.database.PlanEntry;
 
 /**
  * Created by mark on 07.10.2015.
@@ -66,6 +65,8 @@ public class PlanEntryAlternativeListAdapter extends ArrayAdapter<PlanEntry> {
             lecturerView.setText(entry.getLecturer());
             roomView.setText(entry.getRoom());
             timeView.setText(startHour + ":" + startMinute + " - " + endHour + ":" + endMinute);
+
+            commentView.setText(entry.getSemester());
 
         }
 

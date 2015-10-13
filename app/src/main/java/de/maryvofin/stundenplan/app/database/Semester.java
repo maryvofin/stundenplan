@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.database;
+package de.maryvofin.stundenplan.app.database;
 
 import java.io.Serializable;
 import java.util.Collection;

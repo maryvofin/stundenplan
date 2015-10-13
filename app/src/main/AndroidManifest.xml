@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.maryvofin.stundenplan" >
+    package="de.maryvofin.stundenplan.app" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -25,7 +25,6 @@
         <activity android:name=".GroupSelectionActivity"  android:label="@string/activity_title_settings">
 
         </activity>
-        <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".DetailsActivity"></activity>
 
 

@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan;
+package de.maryvofin.stundenplan.app;
 
 
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.text.DateFormatSymbols;
 
-import de.maryvofin.stundenplan.database.PlanEntry;
+import de.maryvofin.stundenplan.app.database.PlanEntry;
 
 /**
  * Created by mark on 07.10.2015.

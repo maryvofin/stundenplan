@@ -20,6 +20,10 @@
         <item>1 Stunde</item>
         <item>1 Tag</item>
     </string-array>
+    <string name="text_profile_delete">Löschen</string>
+    <string name="text_profile_rename">Umbenennen</string>
+    <string name="text_profile_new">Neu</string>
+    <string name="text_profile_delete_question">Profil wirklich löschen?</string>
 
     <string-array name="text_details_activity_tabslabels">
         <item>Details</item>

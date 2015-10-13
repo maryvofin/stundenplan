@@ -1,17 +1,11 @@
-package de.maryvofin.stundenplan;
+package de.maryvofin.stundenplan.app;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
-import android.view.View;
-import android.widget.TableLayout;
 
-import de.maryvofin.stundenplan.R;
-import de.maryvofin.stundenplan.database.PlanEntry;
+import de.maryvofin.stundenplan.app.database.PlanEntry;
 
 /**
  * Created by mark on 07.10.2015.

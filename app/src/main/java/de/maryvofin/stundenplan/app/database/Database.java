@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.database;
+package de.maryvofin.stundenplan.app.database;
 
 import android.content.Context;
 
@@ -9,8 +9,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -22,7 +26,7 @@ import java.util.regex.Pattern;
 public class Database {
     public static final String DBFILE = "plan.db";
     public static final String PRFILE = "profiles.db";
-    public static final String PATH = "/data/data/de.maryvofin.stundenplan/databases";
+    public static final String PATH = "/data/data/de.maryvofin.stundenplan.app/databases";
 
     private Pattern timeSpanPattern = Pattern.compile("(\\d\\d?)\\.(\\d\\d?)\\.(\\d\\d\\d\\d?)-(\\d\\d?)\\.(\\d\\d?)\\.(\\d\\d\\d\\d?)(\\s\\((.*)\\))?");
     private Pattern simpleKWPattern = Pattern.compile("^KW\\s?((\\s?,?\\s?\\d\\d?(\\s?-\\s?\\d\\d?\\s?(\\(?\\s?ohne\\s?(\\s?,?\\s?\\d\\d?))*\\)?)?)*)$");
@@ -32,6 +36,13 @@ public class Database {
 
     private List<Semester> semesterList = new ArrayList<>();
     private Profiles profiles = null;
+
+    Comparator<PlanEntry> planEntryByTimeComparator = new Comparator<PlanEntry>() {
+        @Override
+        public int compare(PlanEntry lhs, PlanEntry rhs) {
+            return (lhs.getStartHour() * 60 + lhs.getStartMinute()) - (rhs.getStartHour() * 60 + rhs.getStartMinute());
+        }
+    };
 
     public static Database getInstance() {
         return ourInstance;
@@ -232,6 +243,7 @@ public class Database {
     }
 
     public void loadProfiles(Context context) {
+
         try {
             //FileInputStream fis = new FileInputStream(PATH+DBFILE);
             FileInputStream fis = new FileInputStream(getPath(context)+"/"+PRFILE);
@@ -271,4 +283,100 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public void removeEntriesFromList(List<PlanEntry> orig, List<PlanEntry> toDelete) {
+        for(PlanEntry entry: toDelete) orig.remove(entry);
+    }
+
+    public void sortEntryListByTime(List<PlanEntry> list) {
+        Collections.sort(list, planEntryByTimeComparator);
+    }
+
+    public PlanEntry generateSleepOffEntry() {
+        PlanEntry sleepOffEntry = new PlanEntry();
+        sleepOffEntry.setEventType("P");
+        sleepOffEntry.setEventName("Ausschlafen");
+        sleepOffEntry.setStartHour(9);
+        sleepOffEntry.setStartMinute(0);
+        sleepOffEntry.setEndMinute(0);
+        sleepOffEntry.setEndHour(12);
+        sleepOffEntry.setRoom("Schlafzimmer");
+        sleepOffEntry.setLecturer("Du");
+
+        return sleepOffEntry;
+    }
+
+    public void removeWrongModules(List<PlanEntry> list, PlanEntry reference) {
+        Iterator<PlanEntry> iterator = list.iterator();
+        PlanEntry checkEntry;
+        while(iterator.hasNext()) {
+            checkEntry = iterator.next();
+            if(!checkEntry.getEventName().equals(reference.getEventName())) {
+                iterator.remove();
+            }
+        }
+    }
+
+    boolean overlaps(PlanEntry entry, List<PlanEntry> entries) {
+        int entryStartCode = entry.getStartHour()*60+entry.getStartMinute();
+        int entryEndCode = entry.getEndHour()*60+entry.getEndMinute();
+
+        for(PlanEntry e: entries) {
+            int eStartCode = e.getStartHour()*60+e.getStartMinute();
+            int eEndCode = e.getEndHour()*60+e.getEndMinute();
+
+            if( (entryStartCode >= eStartCode && entryStartCode <= eEndCode) || (entryEndCode >= eStartCode && entryEndCode <= eEndCode) ) {
+
+                return true;
+            }
+
+        }
+
+
+        return false;
+    }
+
+    public void removeOverlappings(List<PlanEntry> listToCheck, List<PlanEntry> origList) {
+        Iterator<PlanEntry> iterator = listToCheck.iterator();
+        PlanEntry checkEntry;
+        while(iterator.hasNext()) {
+            if(overlaps(iterator.next(),origList)) iterator.remove();
+        }
+
+    }
+
+    public boolean isAlternative(PlanEntry reference, PlanEntry possibleAlternative) {
+        if(reference.equals(possibleAlternative)) return false;
+
+        if(!reference.getEventType().equals(possibleAlternative.getEventType())) {
+            return false;
+        }
+
+        if(reference.getEventGroup() != null && possibleAlternative.getEventGroup() != null) {
+            if(reference.getEventGroup().equals(possibleAlternative.getEventGroup())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void removeWrongAlternatives(List<PlanEntry> alternatives, PlanEntry reference) {
+        removeWrongModules(alternatives,reference);
+        Iterator<PlanEntry> iterator = alternatives.iterator();
+        while(iterator.hasNext()) {
+            if(!isAlternative(reference,iterator.next())) iterator.remove();
+        }
+    }
+
+    public PlanEntry generateDayHeaderEntry(Calendar calendar) {
+        PlanEntry dayEntry = new PlanEntry();
+        dayEntry.setEventType("#dayentry#");
+        dayEntry.setWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
+        dayEntry.setEventName(DateFormatSymbols.getInstance().getWeekdays()[calendar.get(Calendar.DAY_OF_WEEK)]);
+        return dayEntry;
+    }
+
+
+
 }

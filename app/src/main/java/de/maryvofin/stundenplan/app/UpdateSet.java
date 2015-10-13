@@ -1,6 +1,5 @@
-package de.maryvofin.stundenplan;
+package de.maryvofin.stundenplan.app;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 
 /**

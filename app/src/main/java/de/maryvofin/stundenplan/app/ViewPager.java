@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan;
+package de.maryvofin.stundenplan.app;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.parser;
+package de.maryvofin.stundenplan.app.parser;
 
 import android.content.Context;
 
@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.maryvofin.stundenplan.database.Database;
-import de.maryvofin.stundenplan.database.PlanEntry;
-import de.maryvofin.stundenplan.database.Semester;
+import de.maryvofin.stundenplan.app.database.Database;
+import de.maryvofin.stundenplan.app.database.PlanEntry;
+import de.maryvofin.stundenplan.app.database.Semester;
 
 /**
  * Created by mark on 28.09.2015.
