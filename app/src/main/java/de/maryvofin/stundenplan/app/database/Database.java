@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
@@ -249,16 +250,11 @@ public class Database {
             FileInputStream fis = new FileInputStream(getPath(context)+"/"+PRFILE);
             ObjectInputStream ois = new ObjectInputStream(fis);
             profiles = (Profiles)ois.readObject();
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             Profile profile = new Profile();
             profile.setName("default");
             profiles = new Profiles(profile);
-        } catch (StreamCorruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+
         }
     }
 

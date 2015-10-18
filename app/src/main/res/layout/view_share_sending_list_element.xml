@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <CheckBox
+        android:id="@+id/view_share_sending_list_element_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:layout_toRightOf="@id/view_share_sending_list_element_checkbox"
+        android:scrollHorizontally="false"
+        android:textSize="20sp"
+        android:id="@+id/view_share_sending_list_element_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

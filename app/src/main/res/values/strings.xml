@@ -26,6 +26,12 @@
     <string name="text_profile_delete_question">Profil wirklich löschen?</string>
 
     <string name="text_share_activity_title">Profilaustausch</string>
+    <string name="text_share_sending_profiles">Zu sendene Profile:</string>
+    <string name="text_share_send">senden</string>
+    <string-array name="text_share_activity_tabslabels">
+        <item>Senden</item>
+        <item>Empfangen</item>
+    </string-array>
 
     <string-array name="text_details_activity_tabslabels">
         <item>Details</item>

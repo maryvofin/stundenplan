@@ -1,7 +1,6 @@
 package de.maryvofin.stundenplan.app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,20 +11,39 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class ShareFragmentPagerAdapter extends FragmentPagerAdapter {
 
     Activity activity;
+    BluetoothService bluetoothService;
 
-    public ShareFragmentPagerAdapter(FragmentManager fm, Activity activity) {
+
+    public ShareFragmentPagerAdapter(FragmentManager fm, Activity activity, BluetoothService bluetoothService) {
         super(fm);
         this.activity = activity;
+        this.bluetoothService = bluetoothService;
     }
 
 
     @Override
     public Fragment getItem(int position) {
+        Fragment f;
+        switch (position) {
+            case 0:
+
+                return new ShareFragmentSending();
+            case 1:
+                return new ShareFragmentReceiving();
+
+
+        }
+
         return null;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return 2;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return activity.getResources().getStringArray(R.array.text_share_activity_tabslabels)[position];
     }
 }

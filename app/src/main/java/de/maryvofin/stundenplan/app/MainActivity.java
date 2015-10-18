@@ -325,12 +325,13 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
 
             @Override
             public void onDrawerOpened(View drawerView) {
-
+                storeCurrentPage();
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 setAdapters();
+                restoreCurrentPage();
             }
 
             @Override
