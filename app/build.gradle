@@ -13,12 +13,26 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+
+    signingConfigs {
+        release {
+            storeFile file("/var/lib/jenkins/keystroke");
+            storePassword "Muywsd10ibz"
+            keyAlias "maryvofin"
+            keyPassword "Muywsd10ibz"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
+
+
 }
 
 dependencies {
