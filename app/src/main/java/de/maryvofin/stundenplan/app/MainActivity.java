@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -26,11 +28,14 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondarySwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
+import com.mikepenz.materialdrawer.model.SwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
@@ -60,10 +65,10 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
         setContentView(R.layout.activity_main2);
 
         Database.getInstance().load(this);
-        prepareStart();
 
         createDrawer(savedInstanceState);
 
+        prepareStart();
 
         showMainFragment();
 
@@ -103,8 +108,6 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                 .withSavedInstance(savedInstanceState)
                 .build();
 
-
-
         final SecondaryDrawerItem sisItem = new SecondaryDrawerItem().withName(R.string.text_link_sis).withIcon(GoogleMaterial.Icon.gmd_link).withSelectable(false);
         final SecondaryDrawerItem leaItem = new SecondaryDrawerItem().withName(R.string.text_link_lea).withIcon(GoogleMaterial.Icon.gmd_link).withSelectable(false);
         final SecondaryDrawerItem evaItem = new SecondaryDrawerItem().withName(R.string.text_link_eva).withIcon(GoogleMaterial.Icon.gmd_link).withSelectable(false);
@@ -115,6 +118,17 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
 
         final SecondaryDrawerItem infoItem = new SecondaryDrawerItem().withName(R.string.text_info).withIcon(GoogleMaterial.Icon.gmd_info).withSelectable(false);
 
+        final SecondarySwitchDrawerItem refreshIntervalSwitch = new SecondarySwitchDrawerItem().withName(R.string.text_update_hourly).withIcon(GoogleMaterial.Icon.gmd_settings).withChecked(false).withOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = getSharedPreferences("update", Context.MODE_PRIVATE).edit();
+                editor.putLong("interval", (isChecked) ? 60 : 60 * 24);
+                editor.commit();
+            }
+        });
+        long updateIntervalMinutes = getSharedPreferences("update", Context.MODE_PRIVATE).getLong("interval", 60);
+        if(updateIntervalMinutes == 60) refreshIntervalSwitch.withChecked(true);
+
         drawer = new DrawerBuilder()
                 .withActivity(this)
                 .withAccountHeader(accountHeader)
@@ -124,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                 .addDrawerItems(
                         planItem
                         ,eventSelectionItem
+                        ,new DividerDrawerItem()
+                        ,refreshIntervalSwitch
                         ,new SectionDrawerItem().withName(R.string.text_links)
                         ,sisItem
                         ,leaItem
@@ -163,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     }
 
     void showFragment(Fragment f) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, f).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, f).addToBackStack(null).commit();
     }
 
     void changeCurrentProfile(IProfile profile) {

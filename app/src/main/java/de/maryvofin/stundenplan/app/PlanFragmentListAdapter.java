@@ -96,7 +96,7 @@ public class PlanFragmentListAdapter extends ArrayAdapter<PlanEntry> {
 
             //Bestimmen ob aktuell
             if(futurepast == 500 && currTimeCode >= entryStartCode && currTimeCode <= entryEndCode) {
-                labelView.setTextColor(activity.getResources().getColor(R.color.textcolor_entry_current));
+                labelView.setTextColor(activity.getResources().getColor(R.color.primary));
             }
 
             view.setOnClickListener(new View.OnClickListener() {

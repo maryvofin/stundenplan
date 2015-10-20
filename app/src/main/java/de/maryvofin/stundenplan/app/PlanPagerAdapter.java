@@ -53,4 +53,6 @@ public class PlanPagerAdapter extends FragmentStatePagerAdapter {
         //System.out.println(String.format("%tA",c)+" "+ DateFormat.getDateInstance(DateFormat.LONG).format(new Date(planTime)));
         return String.format("%tA",c)+" "+ DateFormat.getDateInstance(DateFormat.LONG).format(new Date(planTime));
     }
+
+
 }
