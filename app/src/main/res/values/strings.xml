@@ -20,10 +20,12 @@
         <item>1 Stunde</item>
         <item>1 Tag</item>
     </string-array>
-    <string name="text_profile_delete">Löschen</string>
-    <string name="text_profile_rename">Umbenennen</string>
-    <string name="text_profile_new">Neu</string>
+    <string name="text_profile_delete">Profil löschen</string>
+    <string name="text_profile_rename">Profil umbenennen</string>
+    <string name="text_profile_new">Neues Profil</string>
     <string name="text_profile_delete_question">Profil wirklich löschen?</string>
+    <string name="text_eventselection">Veranstaltungswahl</string>
+    <string name="text_plan">Stundenplan</string>
 
     <string name="text_share_activity_title">Profilaustausch</string>
     <string name="text_share_sending_profiles">Zu sendene Profile:</string>
@@ -71,6 +73,11 @@
     <string name="text_last_update">letztes Update</string>
     <string name="text_clock">Uhr</string>
     <string name="text_no_update">-</string>
+    <string name="text_links">Links</string>
+    <string name="text_link_sis">SIS</string>
+    <string name="text_link_lea">LEA</string>
+    <string name="text_link_eva">EVA</string>
+    <string name="text_link_webmail">Webmail</string>
 
     <color name="color_divider">#00ACFF</color>
     <color name="textcolor_pageheader">#00ACFF</color>
@@ -81,4 +88,10 @@
     <color name ="textcolor_entry_intersects">#D27237</color>
     <color name="textcolor_no_events">#BBBBBB</color>
     <color name="textcolor_pause_entry">#BBBBBB</color>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
 </resources>
