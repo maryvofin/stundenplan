@@ -24,7 +24,17 @@
 
         </de.maryvofin.stundenplan.app.ViewPager>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/primary"/>
 
+        <TextView
+            android:id="@+id/lastupdate_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"/>
 
     </LinearLayout>
 

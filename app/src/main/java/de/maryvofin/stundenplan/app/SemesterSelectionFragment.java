@@ -21,13 +21,12 @@ public class SemesterSelectionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_semester_selection,container);
+        view = inflater.inflate(R.layout.fragment_semester_selection,container,false);
 
         semesterListAdapter = new ExpandableSemesterListAdapter(this.getActivity());
         ExpandableListView semesterList = (ExpandableListView)view.findViewById(R.id.listview);
         semesterList.setAdapter(semesterListAdapter);
         semesterListAdapter.notifyDataSetChanged();
-
 
         return view;
     }

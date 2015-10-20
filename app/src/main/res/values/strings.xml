@@ -52,7 +52,7 @@
     <string name="text_details_activity_tab_details_time">Uhrzeit:</string>
     <string name="text_details_activity_tab_details_lecturer">Dozent:</string>
     <string name="text_details_activity_tab_details_room">Raum:</string>
-
+    <string name="text_info">Info</string>
 
 
     <string name="text_dialog_info_title">Info</string>
