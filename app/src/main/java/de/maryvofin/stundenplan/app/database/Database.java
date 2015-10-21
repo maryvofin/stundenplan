@@ -31,6 +31,11 @@ public class Database {
     @SuppressLint("SdCardPath")
     public static final String PATH = "/data/data/de.maryvofin.stundenplan.app/databases";
 
+    boolean getAllEntriesAfterLastUpdate = false;
+    List<PlanEntry> allEntries = null;
+    List<PlanEntry> timeEvents = null;
+    long lastTimeEvents = 0;
+
     private Pattern timeSpanPattern = Pattern.compile("(\\d\\d?)\\.(\\d\\d?)\\.(\\d\\d\\d\\d?)-(\\d\\d?)\\.(\\d\\d?)\\.(\\d\\d\\d\\d?)(\\s\\((.*)\\))?");
     private Pattern simpleKWPattern = Pattern.compile("^KW\\s?((\\s?,?\\s?\\d\\d?(\\s?-\\s?\\d\\d?\\s?(\\(?\\s?ohne\\s?(\\s?,?\\s?\\d\\d?))*\\)?)?)*)$");
     private Pattern kwSpanPattern = Pattern.compile("(\\d\\d?)-(\\d\\d?)");
@@ -69,6 +74,7 @@ public class Database {
             FileInputStream fis = new FileInputStream(getPath(context)+"/"+DBFILE);
             ObjectInputStream ois = new ObjectInputStream(fis);
             semesterList = (List<Semester>)ois.readObject();
+            getAllEntriesAfterLastUpdate = false;
         } catch (FileNotFoundException e) {
 
         } catch (StreamCorruptedException e) {
@@ -91,6 +97,7 @@ public class Database {
             out.writeObject(semesters);
             out.close();
             fos.close();
+            getAllEntriesAfterLastUpdate = false;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -104,6 +111,7 @@ public class Database {
 
     public synchronized List<PlanEntry> getAllEvents(Context context) {
         if(semesterList.isEmpty()) load(context);
+        if(getAllEntriesAfterLastUpdate && allEntries != null) return allEntries;
         List<PlanEntry> entries = new LinkedList<>();
 
         for(Semester semester: semesterList) {
@@ -112,6 +120,8 @@ public class Database {
                 //if(entry.getEventName().contains("Wirtschaft")) System.out.println(entry.getWeekDay()+": "+entry.getEventName()+" - "+entry.getEventType()+" - "+entry.getEventGroup()+" - "+entry.getSemester()+" - "+entry.getTimeSpan()+ " - "+entry.getLecturer());
             }
         }
+        allEntries = entries;
+        getAllEntriesAfterLastUpdate = true;
         return entries;
     }
 
@@ -127,6 +137,8 @@ public class Database {
     }
 
     public synchronized List<PlanEntry> getTimeEvents(Context context, long time) {
+        if(getAllEntriesAfterLastUpdate && allEntries != null && lastTimeEvents == time && timeEvents != null) return timeEvents;
+
         List<PlanEntry> entries = getAllEvents(context);
         List<PlanEntry> filteredEntries = new LinkedList<>();
 
@@ -145,6 +157,8 @@ public class Database {
                 }
             }
         }
+        timeEvents = filteredEntries;
+        lastTimeEvents = time;
 
         return filteredEntries;
     }
