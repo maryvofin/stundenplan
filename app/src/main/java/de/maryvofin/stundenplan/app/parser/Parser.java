@@ -28,9 +28,8 @@ public class Parser {
     private Pattern eventPatternWithGroup = Pattern.compile("^(.*)(Gr(\\.|\\s)([^\\(]*)).*?\\s?\\((.{1,4})\\)");
     private Pattern eventPattern = Pattern.compile("^(.*)\\((.*)\\)");
 
-    private final String homePageUrl = "https://eva2.inf.h-brs.de/stundenplan/";
+    public final String homePageUrl = "https://eva2.inf.h-brs.de/stundenplan/";
     private String weeks = "";
-    private volatile boolean parsing = false;
     private boolean error = false;
     private Context context;
     private List<Semester> semesters = new LinkedList<>();
@@ -75,10 +74,6 @@ public class Parser {
             error = true;
         }
 
-    }
-
-    public boolean isParsing() {
-        return parsing;
     }
 
     public List<Semester> getSemesters() {

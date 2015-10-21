@@ -1,5 +1,6 @@
 package de.maryvofin.stundenplan.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class PlanFragmentListAdapter extends ArrayAdapter<PlanEntry> {
         return (time<10) ? "0"+time:""+time;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = activity.getLayoutInflater();

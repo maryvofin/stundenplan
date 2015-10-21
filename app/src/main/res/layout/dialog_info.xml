@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_info_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,17 +18,19 @@
         android:paddingStart="10dp"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/dialog_info_version_t"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_toEndOf="@+id/dialog_info_version_h"
         android:layout_toRightOf="@+id/dialog_info_version_h"
         android:paddingTop="5dp"
         android:paddingLeft="10dp"
-        android:paddingStart="10dp"/>
+        android:paddingStart="10dp"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/dialog_info_responsible_h"
@@ -42,7 +45,8 @@
         android:paddingTop="5dp"
         android:text="@string/text_dialog_info_responsible_header"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/dialog_info_responsible_t"
@@ -53,7 +57,8 @@
         android:layout_below="@+id/dialog_info_responsible_h"
         android:paddingLeft="10dp"
         android:paddingStart="10dp"
-        android:text="@string/text_dialog_info_responsible_text" />
+        android:text="@string/text_dialog_info_responsible_text"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/dialog_info_contact_h"
@@ -67,7 +72,8 @@
         android:paddingTop="5dp"
         android:text="@string/text_dialog_info_contact_header"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/dialog_info_contact_t"
@@ -78,7 +84,8 @@
         android:layout_below="@+id/dialog_info_contact_h"
         android:paddingLeft="10dp"
         android:paddingStart="10dp"
-        android:text="@string/text_dialog_info_contact_text" />
+        android:text="@string/text_dialog_info_contact_text"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/dialog_info_hints_h"
@@ -92,7 +99,8 @@
         android:paddingTop="5dp"
         android:text="@string/text_dialog_info_hints_header"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/dialog_info_hints_t"
@@ -103,6 +111,7 @@
         android:layout_below="@+id/dialog_info_hints_h"
         android:paddingLeft="10dp"
         android:paddingStart="10dp"
-        android:text="@string/text_dialog_info_hints_text" />
+        android:text="@string/text_dialog_info_hints_text"
+        tools:ignore="RtlSymmetry" />
 
 </RelativeLayout>

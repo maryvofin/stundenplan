@@ -1,8 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Stundenplan</string>
 
     <string name="action_settings">Auswahl</string>
-    <string name="text_activity_groupselection_button">OK</string>
+
 
     <string name="text_vorlesung">Vorlesung</string>
     <string name="text_uebung">Übung</string>
@@ -29,7 +29,7 @@
 
     <string name="text_share_activity_title">Profilaustausch</string>
     <string name="text_share_sending_profiles">Zu sendene Profile:</string>
-    <string name="text_share_send">senden</string>
+    <string name="text_share_send" tools:ignore="UnusedResources">senden</string>
     <string-array name="text_share_activity_tabslabels">
         <item>Senden</item>
         <item>Empfangen</item>
@@ -83,15 +83,12 @@
     <color name="textcolor_pageheader">#00ACFF</color>
     <color name="bgcolor_activity_main_leftDrawer">#DDDDDD</color>
     <color name="bgcolor_entry_past">#DDDDDD</color>
-    <color name="textcolor_entry_past">#CCC514</color>
-    <color name ="textcolor_entry_current">#00ACFF</color>
+
+
     <color name ="textcolor_entry_intersects">#D27237</color>
     <color name="textcolor_no_events">#BBBBBB</color>
     <color name="textcolor_pause_entry">#BBBBBB</color>
-    <string name="title_activity_main2">Main2Activity</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="text_update_hourly">Stündliches Update</string>
 

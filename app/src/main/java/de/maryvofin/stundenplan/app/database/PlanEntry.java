@@ -124,9 +124,8 @@ public class PlanEntry implements Serializable, Comparable<PlanEntry>{
         if (!this.getEventName().equals(other.getEventName())) return false;
         if (this.getEventGroup() != null && other.getEventGroup() != null) if (!this.getEventGroup().equals(other.getEventGroup())) return false;
         if (!this.getLecturer().equals(other.getLecturer())) return false;
-        if (!this.getTimeSpan().equals(other.getTimeSpan())) return false;
+        return this.getTimeSpan().equals(other.getTimeSpan());
 
-        return true;
     }
 
     @Override

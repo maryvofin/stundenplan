@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
             public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences.Editor editor = getSharedPreferences("update", Context.MODE_PRIVATE).edit();
                 editor.putLong("interval", (isChecked) ? 60 : 60 * 24);
-                editor.commit();
+                editor.apply();
             }
         });
         long updateIntervalMinutes = getSharedPreferences("update", Context.MODE_PRIVATE).getLong("interval", 60);

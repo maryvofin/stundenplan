@@ -1,5 +1,6 @@
 package de.maryvofin.stundenplan.app.database;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import java.io.FileInputStream;
@@ -27,6 +28,7 @@ import java.util.regex.Pattern;
 public class Database {
     public static final String DBFILE = "plan.db";
     public static final String PRFILE = "profiles.db";
+    @SuppressLint("SdCardPath")
     public static final String PATH = "/data/data/de.maryvofin.stundenplan.app/databases";
 
     private Pattern timeSpanPattern = Pattern.compile("(\\d\\d?)\\.(\\d\\d?)\\.(\\d\\d\\d\\d?)-(\\d\\d?)\\.(\\d\\d?)\\.(\\d\\d\\d\\d?)(\\s\\((.*)\\))?");

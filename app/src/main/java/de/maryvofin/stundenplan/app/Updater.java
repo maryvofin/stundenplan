@@ -33,7 +33,7 @@ public class Updater extends AsyncTask<UpdateSet,Boolean,Boolean> {
         if(!parser.hasError()) {
             Editor editor = set.getActivity().getSharedPreferences("update", Context.MODE_PRIVATE).edit();
             editor.putLong("lastupdate",System.currentTimeMillis());
-            editor.commit();
+            editor.apply();
         }
 
         return !parser.hasError();

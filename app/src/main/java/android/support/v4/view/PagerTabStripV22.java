@@ -264,13 +264,12 @@ public class PagerTabStripV22 extends PagerTitleStripV22 {
         super.onDraw(canvas);
 
         final int height = getHeight();
-        final int bottom = height;
         final int left = mCurrText.getLeft() - mTabPadding;
         final int right = mCurrText.getRight() + mTabPadding;
-        final int top = bottom - mIndicatorHeight;
+        final int top = height - mIndicatorHeight;
 
         mTabPaint.setColor(mTabAlpha << 24 | (mIndicatorColor & 0xFFFFFF));
-        canvas.drawRect(left, top, right, bottom, mTabPaint);
+        canvas.drawRect(left, top, right, height, mTabPaint);
 
         if (mDrawFullUnderline) {
             mTabPaint.setColor(0xFF << 24 | (mIndicatorColor & 0xFFFFFF));

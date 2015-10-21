@@ -11,7 +11,7 @@ import de.maryvofin.stundenplan.app.database.Profile;
  */
 public interface ProfileListReceivedListener {
 
-    public void profilesReceived(BluetoothDevice device, List<Profile> profiles);
+    void profilesReceived(BluetoothDevice device, List<Profile> profiles);
 
 
 

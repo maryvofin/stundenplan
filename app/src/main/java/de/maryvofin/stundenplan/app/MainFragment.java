@@ -1,5 +1,6 @@
 package de.maryvofin.stundenplan.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -90,6 +91,7 @@ public class MainFragment extends Fragment {
         setLastUpdateText(false);
     }
 
+    @SuppressLint("SetTextI18n")
     public void setLastUpdateText(boolean updating) {
         TextView textView = (TextView)view.findViewById(R.id.lastupdate_text);
         long lastUpdate = getActivity().getSharedPreferences("update", Context.MODE_PRIVATE).getLong("lastupdate", 0);

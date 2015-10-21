@@ -1,5 +1,6 @@
 package de.maryvofin.stundenplan.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -260,7 +261,7 @@ public class MainActivityOld extends FragmentActivity implements ProgressDialog.
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SharedPreferences.Editor editor = getSharedPreferences("update", Context.MODE_PRIVATE).edit();
                 editor.putLong("interval",(position == 0)? 60 : 60*24);
-                editor.commit();
+                editor.apply();
             }
 
             @Override
@@ -299,6 +300,7 @@ public class MainActivityOld extends FragmentActivity implements ProgressDialog.
         ds.show(getFragmentManager(),"datepicker");
     }
 
+    @SuppressLint("SetTextI18n")
     public void setLastUpdateText(boolean updating) {
 
         TextView textView = (TextView)findViewById(R.id.activity_main_lastupdate_text);
