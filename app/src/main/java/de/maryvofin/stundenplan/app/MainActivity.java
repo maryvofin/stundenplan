@@ -192,7 +192,8 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
         Database.getInstance().getProfiles().setCurrentProfile(profile);
         Database.getInstance().updateProfiles(this);
         update();
-        if(mainFragment != null) mainFragment.update();
+        if(mainFragment != null && mainFragment == currentFragment) mainFragment.update();
+        if(semesterSelectionFragment != null && semesterSelectionFragment == currentFragment) showEventSelectionFragment();
     }
 
     void update() {
