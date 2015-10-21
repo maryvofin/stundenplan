@@ -17,9 +17,6 @@ import java.util.List;
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 
-/**
- * Created by mark on 04.10.2015.
- */
 public class PlanFragment extends Fragment {
 
     @Nullable
@@ -89,4 +86,6 @@ public class PlanFragment extends Fragment {
         super.onResume();
 
     }
+
+
 }

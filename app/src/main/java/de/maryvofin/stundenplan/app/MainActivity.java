@@ -169,17 +169,19 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     }
 
     void showMainFragment() {
-        if(mainFragment == null) mainFragment = new MainFragment();
+        mainFragment = new MainFragment();
         showFragment(mainFragment);
     }
 
     private void showEventSelectionFragment() {
-        if(semesterSelectionFragment == null) semesterSelectionFragment = new SemesterSelectionFragment();
+        semesterSelectionFragment = new SemesterSelectionFragment();
         showFragment(semesterSelectionFragment);
     }
 
     void showFragment(Fragment f) {
+        if (currentFragment == f) return;
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, f).addToBackStack(null).commit();
+        currentFragment = f;
     }
 
     void changeCurrentProfile(IProfile profile) {
