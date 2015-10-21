@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="de.maryvofin.stundenplan.app" >
+    package="de.maryvofin.stundenplan.app"
+    >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -12,7 +12,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/MyTheme"
-        tools:ignore="AllowBackup">
+        android:fullBackupContent="true"
+        android:supportsRtl="false">
         <activity
             android:name=".MainActivityOld"
             android:label="@string/app_name" >
