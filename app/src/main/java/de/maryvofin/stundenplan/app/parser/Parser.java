@@ -39,6 +39,7 @@ public class Parser {
     private Connection con;
 
     Pattern hourMinutePattern = Pattern.compile("(\\d\\d?):(\\d\\d?)");
+    private boolean parsing;
 
     public Parser(Context context) {
         this.context = context;
@@ -55,6 +56,7 @@ public class Parser {
     synchronized public void parse()  {
 
         try {
+            parsing = true;
             con = Jsoup.connect(homePageUrl);
             doc = con.get();
             generateSemesterList();
@@ -67,13 +69,15 @@ public class Parser {
             //Datenbank aktualisieren
             Database.getInstance().update(context, semesters);
 
+
+
             error = false;
         } catch (IOException e) {
             error = true;
         } catch (SQLException e) {
             error = true;
         }
-
+        parsing = false;
     }
 
     public List<Semester> getSemesters() {
@@ -177,6 +181,7 @@ public class Parser {
     }
 
 
-
-
+    public boolean isParsing() {
+        return parsing;
+    }
 }
