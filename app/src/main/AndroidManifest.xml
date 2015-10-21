@@ -11,7 +11,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/MaterialDrawerTheme.ActionBar"
+        android:theme="@style/MyTheme"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivityOld"
@@ -20,16 +20,17 @@
         </activity>
         <activity
             android:name=".GroupSelectionActivity"
-            android:theme="@style/MaterialTheme.Light.ActionBar"
+
             android:label="@string/activity_title_settings" >
         </activity>
         <activity android:name=".DetailsActivity"
-            android:theme="@style/MaterialTheme.Light.ActionBar"/>
+            />
         <activity android:name=".ShareActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/MaterialDrawerTheme.Light">
+
+            >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
