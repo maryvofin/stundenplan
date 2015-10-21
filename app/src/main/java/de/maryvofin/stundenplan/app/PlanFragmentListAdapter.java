@@ -25,6 +25,8 @@ public class PlanFragmentListAdapter extends ArrayAdapter<PlanEntry> {
     Activity activity;
     int futurepast;
 
+    enum ListElementType {PAUSE,EVENT};
+
     public PlanFragmentListAdapter(Activity context, List<PlanEntry> entries, int futurepast) {
         super(context, R.layout.view_planentry,entries);
         this.entries = entries;
@@ -41,10 +43,12 @@ public class PlanFragmentListAdapter extends ArrayAdapter<PlanEntry> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = activity.getLayoutInflater();
         final PlanEntry entry = entries.get(position);
-        View view = null;
+        View view = convertView;
 
         if(!entry.getEventType().equals("#pause#")) {
+            if(view == null || view.getTag() != ListElementType.EVENT)
             view = inflater.inflate(R.layout.view_planentry, parent, false);
+            view.setTag(ListElementType.EVENT);
 
             TextView typeView = (TextView) view.findViewById(R.id.view_planentry_text_type);
             TextView commentView = (TextView) view.findViewById(R.id.view_planentry_text_commentcount);
@@ -110,7 +114,9 @@ public class PlanFragmentListAdapter extends ArrayAdapter<PlanEntry> {
 
         }
         else {
+            if(view == null || view.getTag() != ListElementType.PAUSE)
             view = inflater.inflate(R.layout.view_planentry_pause,parent,false);
+            view.setTag(ListElementType.PAUSE);
 
             int pauseInMinutes = (entry.getEndHour()*60+entry.getEndMinute()) - (entry.getStartHour()*60+entry.getStartMinute());
 

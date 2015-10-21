@@ -25,6 +25,7 @@ public class PlanPagerAdapter extends FragmentStatePagerAdapter {
     public PlanPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
+
     }
 
     @Override

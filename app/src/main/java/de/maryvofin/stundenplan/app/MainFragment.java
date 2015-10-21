@@ -71,6 +71,7 @@ public class MainFragment extends Fragment {
     public void setAdapter() {
         ViewPager pager = (ViewPager)view.findViewById(R.id.pager);
         pager.setAdapter(planPagerAdapter);
+        pager.setOffscreenPageLimit(5);
         restoreCurrentPage();
     }
 
