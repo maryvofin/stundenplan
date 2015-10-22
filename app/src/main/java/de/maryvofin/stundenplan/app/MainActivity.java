@@ -42,6 +42,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.IProfileAdapter;
@@ -222,6 +223,26 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
 
     }
 
+    void showMin1LetterDialog(Profile profile) {
+        new AlertDialog.Builder(this)
+                .setTitle(Database.getInstance().getProfiles().getCurrentProfile().getName())
+                .setMessage(R.string.text_profile_delete_question)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+               .show();
+
+        if(profile == null) {
+            showNewProfileDialog();
+        }
+        else {
+            showRenameProfileDialog(profile);
+        }
+    }
+
     void showNewProfileDialog() {
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -233,15 +254,20 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String text = input.getText().toString();
+                        if (text == null || text.equals("")) {
+                            //showMin1LetterDialog(null);
+                            return;
+                        }
                         Profile profile = new Profile();
-                        profile.setName(input.getText().toString());
+                        profile.setName(text);
                         Database.getInstance().getProfiles().getProfiles().add(profile);
                         Database.getInstance().getProfiles().setCurrentProfile(profile);
                         Database.getInstance().updateProfiles(a);
                         update();
                     }
                 })
-                .setNeutralButton(android.R.string.cancel,null).show();
+                .setNeutralButton(android.R.string.cancel, null).show();
     }
 
     void showRenameProfileDialog(final Profile profile) {
@@ -257,7 +283,12 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        profile.setName(input.getText().toString());
+                        String text = input.getText().toString();
+                        if(text == null || text.equals("")) {
+                            //showMin1LetterDialog(profile);
+                            return;
+                        }
+                        profile.setName(text);
                         Database.getInstance().updateProfiles(a);
                         update();
                     }

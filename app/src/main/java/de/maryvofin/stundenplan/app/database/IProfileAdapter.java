@@ -115,7 +115,14 @@ public class IProfileAdapter implements IProfile<IProfileAdapter> {
         ColorGenerator generator = ColorGenerator.MATERIAL;
 
         for(Profile p: Database.getInstance().getProfiles().getProfiles()) {
-            list.add(new IProfileAdapter(p).withIcon(TextDrawable.builder().buildRect(p.getName().substring(0,1).toUpperCase(Locale.getDefault()), generator.getColor(p.getName()))));
+            String letter = "null";
+            try {
+                letter = p.getName().substring(0,1).toUpperCase(Locale.getDefault());
+            }
+            catch (Exception e) {
+
+            }
+            list.add(new IProfileAdapter(p).withIcon(TextDrawable.builder().buildRect(letter, generator.getColor(p.getName()))));
         }
 
         return list;

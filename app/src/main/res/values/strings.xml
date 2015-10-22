@@ -78,6 +78,7 @@
     <string name="text_link_lea">LEA</string>
     <string name="text_link_eva">EVA</string>
     <string name="text_link_webmail">Webmail</string>
+    <string name="text_min1letter">Es muss mindestens 1 Zeichen eingegeben werden</string>
 
     <color name="color_divider">#00ACFF</color>
     <color name="textcolor_pageheader">#00ACFF</color>
