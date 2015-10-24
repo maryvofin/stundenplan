@@ -175,7 +175,7 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     @Override
     public void onPageSelected(int position) {
         pageStack.add(getStoredPage());
-        System.out.println(getStoredPage());
+        //System.out.println(getStoredPage());
         storeCurrentPage();
 
     }
