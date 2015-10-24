@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -20,15 +21,16 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Stack;
 
 /**
  * Created by mark on 20.10.2015.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements android.support.v4.view.ViewPager.OnPageChangeListener {
 
     PlanPagerAdapter planPagerAdapter;
     View view;
-    int currentPage = 500;
+    Stack<Integer> pageStack = new Stack<>();
 
     @Nullable
     @Override
@@ -56,11 +58,16 @@ public class MainFragment extends Fragment {
             }
         });
 
+        ViewPager pager = (ViewPager)view.findViewById(R.id.pager);
+        pager.addOnPageChangeListener(this);
+
 
         return view;
     }
 
-
+    ViewPager getViewPager() {
+        return (ViewPager)view.findViewById(R.id.pager);
+    }
 
     @Override
     public void onResume() {
@@ -77,12 +84,18 @@ public class MainFragment extends Fragment {
 
     public void storeCurrentPage() {
         ViewPager pager = (ViewPager)view.findViewById(R.id.pager);
-        currentPage = pager.getCurrentItem();
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).edit();
+        editor.putInt("currentPage", pager.getCurrentItem());
+        editor.apply();
     }
 
     public void restoreCurrentPage() {
         ViewPager pager = (ViewPager)view.findViewById(R.id.pager);
-        pager.setCurrentItem(currentPage);
+        pager.setCurrentItem(getStoredPage());
+    }
+
+    public int getStoredPage() {
+        return getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).getInt("currentPage", 500);
     }
 
 
@@ -136,5 +149,39 @@ public class MainFragment extends Fragment {
             }
         };
         ds.show(getActivity().getFragmentManager(),"datepicker");
+    }
+
+    public boolean backPressed() {
+        ViewPager pager = getViewPager();
+
+        if(!pageStack.isEmpty())
+        {
+            pager.removeOnPageChangeListener(this);
+            pager.setCurrentItem(pageStack.pop());
+            pager.addOnPageChangeListener(this);
+        }
+        else {
+            //getActivity().finish();
+        }
+
+        return false;
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        pageStack.add(getStoredPage());
+        System.out.println(getStoredPage());
+        storeCurrentPage();
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

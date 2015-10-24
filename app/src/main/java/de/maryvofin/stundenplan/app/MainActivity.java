@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     public static final int IDENTIFIER_ADD_PROFILE = 1;
     public static final int IDENTIFIER_RENAME_PROFILE = 2;
     public static final int IDENTIFIER_DELETE_PROFILE = 3;
+    public static final int IDENTIFIER_PLAN = 4;
+    public static final int IDENTIFIER_SELECTION = 5;
 
     Drawer drawer;
     AccountHeader accountHeader;
@@ -114,8 +117,8 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
         final SecondaryDrawerItem evaItem = new SecondaryDrawerItem().withName(R.string.text_link_eva).withIcon(GoogleMaterial.Icon.gmd_link).withSelectable(false);
         final SecondaryDrawerItem webmailItem = new SecondaryDrawerItem().withName(R.string.text_link_webmail).withIcon(GoogleMaterial.Icon.gmd_link).withSelectable(false);
 
-        final PrimaryDrawerItem planItem = new PrimaryDrawerItem().withName(R.string.text_plan).withIcon(GoogleMaterial.Icon.gmd_event);
-        final PrimaryDrawerItem eventSelectionItem = new PrimaryDrawerItem().withName(R.string.text_eventselection).withIcon(GoogleMaterial.Icon.gmd_list);
+        final PrimaryDrawerItem planItem = new PrimaryDrawerItem().withName(R.string.text_plan).withIcon(GoogleMaterial.Icon.gmd_event).withIdentifier(IDENTIFIER_PLAN);
+        final PrimaryDrawerItem eventSelectionItem = new PrimaryDrawerItem().withName(R.string.text_eventselection).withIcon(GoogleMaterial.Icon.gmd_list).withIdentifier(IDENTIFIER_SELECTION);
 
         final SecondaryDrawerItem infoItem = new SecondaryDrawerItem().withName(R.string.text_info).withIcon(GoogleMaterial.Icon.gmd_info).withSelectable(false);
 
@@ -181,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
 
     void showFragment(Fragment f) {
         if (currentFragment == f) return;
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, f).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, f).commit();
         currentFragment = f;
     }
 
@@ -391,6 +394,24 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                     }
                 });
         db.show();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                if(currentFragment == semesterSelectionFragment) {
+                    drawer.setSelection(IDENTIFIER_PLAN);
+                    return true;
+                }
+                else if(currentFragment == mainFragment){
+                    if(mainFragment != null) mainFragment.backPressed();
+                }
+                return true;
+        }
+
+
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
