@@ -9,6 +9,7 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.materialdrawer.holder.ImageHolder;
 import com.mikepenz.materialdrawer.holder.StringHolder;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.Locale;
 
 
 
-public class IProfileAdapter implements IProfile<IProfileAdapter> {
+public class IProfileAdapter extends ProfileDrawerItem {
 
     Profile profile;
     ImageHolder image = null;
@@ -32,82 +33,6 @@ public class IProfileAdapter implements IProfile<IProfileAdapter> {
         return this;
     }
 
-    @Override
-    public StringHolder getName() {
-        return new StringHolder(profile.getName());
-    }
-
-    @Override
-    public IProfileAdapter withEmail(String email) {
-        return this;
-    }
-
-    @Override
-    public StringHolder getEmail() {
-        return new StringHolder("");
-    }
-
-    @Override
-    public IProfileAdapter withIcon(Drawable icon) {
-        image = new ImageHolder(icon);
-        return this;
-    }
-
-    @Override
-    public IProfileAdapter withIcon(Bitmap bitmap) {
-        image = new ImageHolder(bitmap);
-        return this;
-    }
-
-    @Override
-    public IProfileAdapter withIcon(int iconRes) {
-        image = new ImageHolder(iconRes);
-        return this;
-    }
-
-    @Override
-    public IProfileAdapter withIcon(String url) {
-        image = new ImageHolder(url);
-        return this;
-    }
-
-    @Override
-    public IProfileAdapter withIcon(Uri uri) {
-        image = new ImageHolder(uri);
-        return this;
-    }
-
-    @Override
-    public IProfileAdapter withIcon(IIcon icon) {
-        image = new ImageHolder(icon);
-        return this;
-    }
-
-    @Override
-    public ImageHolder getIcon() {
-        return image;
-    }
-
-    @Override
-    public IProfileAdapter withSelectable(boolean selectable) {
-        this.selectable = selectable;
-        return this;
-    }
-
-    @Override
-    public boolean isSelectable() {
-        return selectable;
-    }
-
-    @Override
-    public IProfileAdapter withIdentifier(int identifier) {
-        return this;
-    }
-
-    @Override
-    public int getIdentifier() {
-        return profile.getUuid().hashCode();
-    }
 
     public static ArrayList<IProfile> generateProfileList() {
         ArrayList<IProfile> list = new ArrayList<>();
@@ -122,7 +47,18 @@ public class IProfileAdapter implements IProfile<IProfileAdapter> {
             catch (Exception e) {
 
             }
-            list.add(new IProfileAdapter(p).withIcon(TextDrawable.builder().buildRect(letter, generator.getColor(p.getName()))));
+
+            list.add(new IProfileAdapter(p).withIcon(TextDrawable.builder()
+                            .beginConfig()
+                                .width(150)
+                                .height(150)
+                            .endConfig()
+                            .buildRound(letter, generator.getColor(p.getName())))
+                .withEmail(p.getName())
+                .withName(p.getName())
+
+                .withIdentifier(p.getUuid().hashCode())
+            );
         }
 
         return list;

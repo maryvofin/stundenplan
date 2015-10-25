@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                 .withActivity(this)
                 .withHeaderBackground(R.color.colorPrimary)
                 .withSelectionSecondLineShown(false)
+                .withCompactStyle(false)
+                .withProfiles(IProfileAdapter.generateProfileList())
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
                     public boolean onProfileChanged(View view, IProfile profile, boolean current) {
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                                 showNewProfileDialog();
                                 break;
                             case IDENTIFIER_RENAME_PROFILE:
-                                Profile p = ((IProfileAdapter)accountHeader.getActiveProfile()).getProfile();
+                                Profile p = ((IProfileAdapter) accountHeader.getActiveProfile()).getProfile();
                                 showRenameProfileDialog(p);
                                 break;
                             case IDENTIFIER_DELETE_PROFILE:
