@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String text = input.getText().toString();
-                        if (text == null || text.equals("")) {
+                        if (text.equals("")) {
                             //showMin1LetterDialog(null);
                             return;
                         }
@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String text = input.getText().toString();
-                        if(text == null || text.equals("")) {
+                        if(text.equals("")) {
                             //showMin1LetterDialog(profile);
                             return;
                         }
@@ -402,6 +402,11 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
+                if(drawer.isDrawerOpen()) {
+                    drawer.closeDrawer();
+                    return true;
+                }
+
                 if(currentFragment == semesterSelectionFragment) {
                     drawer.setSelection(IDENTIFIER_PLAN);
                     return true;
