@@ -23,14 +23,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Stack;
 
-/**
- * Created by mark on 20.10.2015.
- */
 public class MainFragment extends Fragment implements android.support.v4.view.ViewPager.OnPageChangeListener {
 
     PlanPagerAdapter planPagerAdapter;
     View view;
-    Stack<Integer> pageStack = new Stack<>();
+
 
     @Nullable
     @Override
@@ -154,14 +151,19 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     public boolean backPressed() {
         ViewPager pager = getViewPager();
 
-        if(!pageStack.isEmpty())
-        {
+        int currentItem = pager.getCurrentItem();
+
+        if(currentItem != 500) {
+
             pager.removeOnPageChangeListener(this);
-            pager.setCurrentItem(pageStack.pop());
+
+            if (currentItem > 500) pager.setCurrentItem(currentItem - 1);
+            if (currentItem < 500) pager.setCurrentItem(currentItem + 1);
+
             pager.addOnPageChangeListener(this);
         }
         else {
-            //getActivity().finish();
+            getActivity().finish();
         }
 
         return false;
@@ -174,8 +176,7 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
 
     @Override
     public void onPageSelected(int position) {
-        pageStack.add(getStoredPage());
-        //System.out.println(getStoredPage());
+
         storeCurrentPage();
 
     }
