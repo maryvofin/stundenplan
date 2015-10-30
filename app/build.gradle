@@ -55,13 +55,12 @@ dependencies {
     compile 'com.mikepenz:iconics-core:1.7.9@aar'
     compile 'com.mikepenz:google-material-typeface:1.2.0.1@aar'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    //compile 'com.j256.ormlite:ormlite-core:4.48'
-    //compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'info.quantumflux:library:0.9.1'
     androidTestCompile 'com.android.support.test:runner:0.4.1'
     androidTestCompile 'com.android.support.test:rules:0.4.1'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
     androidTestCompile 'com.android.support:support-annotations:23.1.0'
-    // Set this dependency to build and run UI Automator tests
+
     //androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
 
 }
