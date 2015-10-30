@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     public static final int IDENTIFIER_DELETE_PROFILE = 3;
     public static final int IDENTIFIER_PLAN = 4;
     public static final int IDENTIFIER_SELECTION = 5;
+    public static final int IDENTIFIER_TASKS = 6;
 
     Drawer drawer;
     AccountHeader accountHeader;
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
 
         final PrimaryDrawerItem planItem = new PrimaryDrawerItem().withName(R.string.text_plan).withIcon(GoogleMaterial.Icon.gmd_event).withIdentifier(IDENTIFIER_PLAN);
         final PrimaryDrawerItem eventSelectionItem = new PrimaryDrawerItem().withName(R.string.text_eventselection).withIcon(GoogleMaterial.Icon.gmd_list).withIdentifier(IDENTIFIER_SELECTION);
+        final PrimaryDrawerItem tasksItem = new PrimaryDrawerItem().withName(R.string.text_tasks).withIcon(GoogleMaterial.Icon.gmd_assignment).withIdentifier(IDENTIFIER_TASKS);
 
         final SecondaryDrawerItem infoItem = new SecondaryDrawerItem().withName(R.string.text_info).withIcon(GoogleMaterial.Icon.gmd_info).withSelectable(false);
 
@@ -144,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                 .addDrawerItems(
                         planItem
                         ,eventSelectionItem
+                        ,tasksItem
                         ,new DividerDrawerItem()
                         ,refreshIntervalSwitch
                         ,new SectionDrawerItem().withName(R.string.text_links)
@@ -165,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                         if (drawerItem == eventSelectionItem) showEventSelectionFragment();
                         if (drawerItem == planItem) showMainFragment();
                         if (drawerItem == infoItem) showInfoDialog();
+                        if (drawerItem == tasksItem) showTasksFragment();
                         return false;
                     }
                 })
@@ -172,6 +176,11 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                 .build();
 
         update();
+    }
+
+    private void showTasksFragment() {
+        Intent intent = new Intent(this, AddTaskActivity.class);
+        startActivity(intent);
     }
 
     void showMainFragment() {

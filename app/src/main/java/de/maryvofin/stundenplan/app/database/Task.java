@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import info.quantumflux.QuantumFlux;
 import info.quantumflux.model.QuantumFluxRecord;
 import info.quantumflux.model.query.Select;
 
@@ -14,6 +13,7 @@ public class Task extends QuantumFluxRecord<Task>{
     public int entryReference;
     public long deadline;
     public String text;
+    public String description;
     public long estimatedDuration;
     public boolean completed = false;
 
