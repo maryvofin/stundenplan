@@ -84,6 +84,10 @@
     <string name="title_abort">abbrechen</string>
     <string name="text_task_description">Titel</string>
     <string name="text_task_content">Beschreibung</string>
+    <string name="text_task_deadline_date">Datum</string>
+    <string name="text_task_deadline_time">Zeit</string>
+    <string name="text_task_duration">Aufwand</string>
+    <string name="text_task_done">Erledigt</string>
 
     <color name="color_divider">#00ACFF</color>
     <color name="textcolor_pageheader">#00ACFF</color>
