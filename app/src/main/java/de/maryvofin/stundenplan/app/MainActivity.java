@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                         update();
                     }
                 })
-                .setNeutralButton(android.R.string.cancel,null).show();
+                .setNeutralButton(android.R.string.cancel, null).show();
     }
 
     void showDeleteProfileDialog() {
@@ -351,7 +351,14 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     protected void onPause() {
         super.onPause();
         if(semesterSelectionFragment != null) semesterSelectionFragment.storeSemesterListState();
-        if(mainFragment != null) mainFragment.storeCurrentPage();
+        if(mainFragment != null) {
+            try {
+                mainFragment.storeCurrentPage();
+            }
+            catch(NullPointerException e) {
+                //nichts tun. kann schonmal passieren
+            }
+        }
     }
 
     void prepareStart() {
