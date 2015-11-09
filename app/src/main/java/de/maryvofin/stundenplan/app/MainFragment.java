@@ -92,7 +92,13 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     }
 
     public int getStoredPage() {
-        return getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).getInt("currentPage", 500);
+        try {
+            return getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).getInt("currentPage", 500);
+        }
+        catch(NullPointerException e) {
+            
+        }
+        return 500;
     }
 
 
