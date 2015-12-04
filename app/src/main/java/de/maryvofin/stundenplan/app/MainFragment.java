@@ -110,19 +110,22 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
 
     @SuppressLint("SetTextI18n")
     public void setLastUpdateText(boolean updating) {
-        TextView textView = (TextView)view.findViewById(R.id.lastupdate_text);
-        long lastUpdate = getActivity().getSharedPreferences("update", Context.MODE_PRIVATE).getLong("lastupdate", 0);
+        try {
+            TextView textView = (TextView) view.findViewById(R.id.lastupdate_text);
+            long lastUpdate = getActivity().getSharedPreferences("update", Context.MODE_PRIVATE).getLong("lastupdate", 0);
 
-        if(updating) {
-            textView.setText(getResources().getString(R.string.text_updating));
+            if (updating) {
+                textView.setText(getResources().getString(R.string.text_updating));
+            } else {
+                String text = (lastUpdate != 0) ? DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(lastUpdate))
+                        + " " + DateFormat.getTimeInstance(DateFormat.MEDIUM).format(new Date(lastUpdate)) + " " + getResources().getString(R.string.text_clock)
+                        : getResources().getString(R.string.text_no_update);
+                textView.setText(getResources().getString(R.string.text_last_update) + ": " + text);
+            }
         }
-        else {
-            String text = (lastUpdate != 0) ? DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(lastUpdate))
-                    + " "+ DateFormat.getTimeInstance(DateFormat.MEDIUM).format(new Date(lastUpdate))+" "+getResources().getString(R.string.text_clock)
-                    : getResources().getString(R.string.text_no_update);
-            textView.setText(getResources().getString(R.string.text_last_update)+": "+text);
+        catch(NullPointerException e) {
+            //Kann auftreten wenn funktion nach app-stop aufgerufen wird
         }
-
     }
 
     public void showSelectDayDialog() {
