@@ -38,6 +38,7 @@
     <string-array name="text_details_activity_tabslabels">
         <item>Details</item>
         <item>Alternativen</item>
+        <item>Aufgaben</item>
     </string-array>
 
     <string name="text_activity_main_leftdrawer_profile">Profil:</string>
