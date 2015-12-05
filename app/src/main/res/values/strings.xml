@@ -89,6 +89,7 @@
     <string name="text_task_deadline_time">Zeit</string>
     <string name="text_task_duration">Aufwand</string>
     <string name="text_task_done">Erledigt</string>
+    <string name="text_deadline">Deadline</string>
 
     <string-array name="durations">
         <item>5 Minuten</item>

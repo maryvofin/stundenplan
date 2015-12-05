@@ -1,7 +1,6 @@
 package de.maryvofin.stundenplan.app;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,7 +24,6 @@ import com.rey.material.widget.Spinner;
 
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 

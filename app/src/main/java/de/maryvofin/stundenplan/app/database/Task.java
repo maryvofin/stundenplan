@@ -25,6 +25,10 @@ public class Task extends QuantumFluxRecord<Task>{
         return Select.from(Task.class).whereEquals("completed",true).queryAsList();
     }
 
+    public static List<Task> findByEntryReference(int value) {
+        return Select.from(Task.class).whereEquals("entryReference",value).queryAsList();
+    }
+
     public static List<Task> findCriticalTasks() {
         List<Task> list = findUncompletedTasks();
         Iterator<Task> i = list.iterator();

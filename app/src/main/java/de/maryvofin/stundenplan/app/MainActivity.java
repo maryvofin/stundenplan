@@ -179,8 +179,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     }
 
     private void showTasksFragment() {
-        Intent intent = new Intent(this, AddTaskActivity.class);
-        startActivity(intent);
+        showFragment(new TasksFragment());
     }
 
     void showMainFragment() {
