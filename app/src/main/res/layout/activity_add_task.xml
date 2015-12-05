@@ -45,6 +45,7 @@
             android:layout_marginTop="5dp">
             <EditText
                 android:id="@+id/text_deadline_date"
+                android:focusableInTouchMode="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -61,6 +62,7 @@
             android:layout_marginTop="5dp">
             <EditText
                 android:id="@+id/text_deadline_time"
+                android:focusableInTouchMode="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -69,19 +71,23 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
-            <EditText
-                android:id="@+id/text_duration"
-                android:layout_width="match_parent"
+
+            <com.rey.material.widget.Spinner
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:inputType="none"
-                android:editable="false"
-                android:hint="@string/text_task_duration"/>
-        </android.support.design.widget.TextInputLayout>
+                android:id="@+id/spinner_duration"
+                app:spn_labelEnable="true"
+                app:spn_label="@string/text_task_duration"
+                android:layout_marginTop="4dp"
+                app:spn_labelTextSize="@dimen/label_text_size"
+                app:spn_dividerHeight="2dp"
+                app:spn_labelPadding="2dp"
+                >
+            </com.rey.material.widget.Spinner>
+
+
+
     </LinearLayout>
 
 

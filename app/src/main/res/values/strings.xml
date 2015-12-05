@@ -89,6 +89,26 @@
     <string name="text_task_duration">Aufwand</string>
     <string name="text_task_done">Erledigt</string>
 
+    <string-array name="durations">
+        <item>5 Minuten</item>
+        <item>10 Minuten</item>
+        <item>15 Minuten</item>
+        <item>30 Minuten</item>
+        <item>1 Stunde</item>
+        <item>2 Stunden</item>
+        <item>5 Stunden</item>
+        <item>10 Stunden</item>
+        <item>1 Tag</item>
+        <item>2 Tage</item>
+        <item>3 Tage</item>
+        <item>5 Tage</item>
+        <item>1 Woche</item>
+        <item>2 Wochen</item>
+        <item>1 Monat</item>
+        <item>2 Monate</item>
+        <item>3 Monate</item>
+    </string-array>
+
     <color name="color_divider">#00ACFF</color>
     <color name="textcolor_pageheader">#00ACFF</color>
     <color name="bgcolor_activity_main_leftDrawer">#DDDDDD</color>
