@@ -90,6 +90,9 @@
     <string name="text_task_duration">Aufwand</string>
     <string name="text_task_done">Erledigt</string>
     <string name="text_deadline">Abgabe</string>
+    <string name="text_delete">löschen</string>
+    <string name="text_abort">abbrechen</string>
+    <string name="text_delete_task_question">Aufgabe löschen?</string>
 
     <string-array name="durations">
         <item>5 Minuten</item>

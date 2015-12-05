@@ -1,5 +1,7 @@
 package de.maryvofin.stundenplan.app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +19,7 @@ import java.util.List;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
 
-public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> implements View.OnClickListener {
+public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
 
     PlanEntry referenceEntry;
     List<Task> taskList;
@@ -42,6 +44,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.tasklist_element,parent,false);
         v.setOnClickListener(this);
+        v.setOnLongClickListener(this);
         return new ViewHolder(v);
     }
 
@@ -66,6 +69,24 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
         Intent intent = new Intent(v.getContext(), AddTaskActivity.class);
         intent.putExtras(extras);
         v.getContext().startActivity(intent);
+    }
+
+    @Override
+    public boolean onLongClick(final View v) {
+        AlertDialog.Builder db = new AlertDialog.Builder(v.getContext());
+        db.setMessage(v.getContext().getResources().getString(R.string.text_delete_task_question));
+        db.setPositiveButton(v.getContext().getResources().getString(R.string.text_delete), new
+                DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        int i = recyclerView.getChildAdapterPosition(v);
+                        Task task = taskList.get(i);
+                        task.delete();
+                        updateData();
+                    }
+                });
+        db.setNegativeButton(v.getContext().getResources().getString(R.string.text_abort),null);
+        db.show();
+        return true;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
