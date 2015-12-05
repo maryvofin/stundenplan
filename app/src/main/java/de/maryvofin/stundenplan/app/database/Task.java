@@ -61,6 +61,6 @@ public class Task extends QuantumFluxRecord<Task> implements Comparable<Task>{
 
     @Override
     public int compareTo(Task another) {
-        return (int)(deadline - another.deadline);
+        return (int)((deadline-estimatedDuration) - (another.deadline-another.estimatedDuration));
     }
 }
