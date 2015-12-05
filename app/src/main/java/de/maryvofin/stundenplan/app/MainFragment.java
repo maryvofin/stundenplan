@@ -80,10 +80,15 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     }
 
     public void storeCurrentPage() {
-        ViewPager pager = (ViewPager)view.findViewById(R.id.pager);
-        SharedPreferences.Editor editor = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).edit();
-        editor.putInt("currentPage", pager.getCurrentItem());
-        editor.apply();
+        try {
+            ViewPager pager = (ViewPager) view.findViewById(R.id.pager);
+            SharedPreferences.Editor editor = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).edit();
+            editor.putInt("currentPage", pager.getCurrentItem());
+            editor.apply();
+        }
+        catch(NullPointerException e) {
+            //Passiert ständig im Emulator
+        }
     }
 
     public void restoreCurrentPage() {

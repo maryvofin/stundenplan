@@ -80,6 +80,7 @@
     <string name="text_link_webmail">Webmail</string>
     <string name="text_min1letter">Es muss mindestens 1 Zeichen eingegeben werden</string>
     <string name="text_tasks">Aufgaben</string>
+    <string name="text_task">Aufgabe</string>
     <string name="title_confirm">bestätigen</string>
     <string name="title_abort">abbrechen</string>
     <string name="text_task_description">Titel</string>

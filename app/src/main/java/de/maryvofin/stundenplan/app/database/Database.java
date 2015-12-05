@@ -389,6 +389,12 @@ public class Database {
         return dayEntry;
     }
 
-
+    public PlanEntry getEntryFromId(Context context, int id) {
+        List<PlanEntry> planEntries = getAllEvents(context);
+        for(PlanEntry entry:planEntries) {
+            if(entry.hashCode() == id) return entry;
+        }
+        return null;
+    }
 
 }

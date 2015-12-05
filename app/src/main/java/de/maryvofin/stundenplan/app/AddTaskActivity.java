@@ -29,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import de.maryvofin.stundenplan.app.database.Database;
+import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
 
 public class AddTaskActivity extends AppCompatActivity {
@@ -73,8 +75,12 @@ public class AddTaskActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle(getResources().getString(R.string.text_task));
         if (task.entryReference != 0) {
-            //Todo: hier den Titel anpassen
+            PlanEntry entry = Database.getInstance().getEntryFromId(this,task.entryReference);
+            if(entry != null) {
+                setTitle(getTitle()+": "+entry.getEventName());
+            }
         }
 
         spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.durations, android.R.layout.simple_spinner_item);
