@@ -77,9 +77,11 @@ public class DatabaseTest {
         List<PlanEntry> entries = db.getTimeEvents(InstrumentationRegistry.getContext(), System.currentTimeMillis());
 
         Calendar calendar = Calendar.getInstance();
-        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+        if(calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY && calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            Assert.assertFalse(entries.isEmpty());
+        }
 
-        Assert.assertFalse(entries.isEmpty());
+
     }
 
     @Test
