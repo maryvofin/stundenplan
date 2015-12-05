@@ -85,6 +85,8 @@ public class TasksFragment extends Fragment {
 
         if (entry != null) {
             Task task = new Task();
+            task.estimatedDuration = Task.durations[0];
+            task.deadline = System.currentTimeMillis();
             task.entryReference = entry.hashCode();
             Bundle extras = new Bundle();
             extras.putSerializable("task",task);

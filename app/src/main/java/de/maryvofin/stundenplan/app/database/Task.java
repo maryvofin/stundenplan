@@ -17,6 +17,14 @@ public class Task extends QuantumFluxRecord<Task> implements Comparable<Task>{
     public long estimatedDuration;
     public boolean completed = false;
 
+    final static long minute = 60000;
+    final static long hour = 60*minute;
+    final static long day = 24 * hour;
+    final static long week = 7 * day;
+    final static long month = 30*day;
+    public final static long durations[] = {5*minute,10*minute, 15*minute, 30*minute,hour,2*hour,5*hour,10*hour,day,2*day,3*day,5*day,week,2*week,month,2*month,3*month};
+
+
     public static List<Task> findUncompletedTasks() {
         return Select.from(Task.class).whereEquals("completed",false).queryAsList();
     }

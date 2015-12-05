@@ -36,12 +36,8 @@ public class AddTaskActivity extends AppCompatActivity {
     DateFormat dateFormat = DateFormat.getDateInstance();
     DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.SHORT);
 
-    final static long minute = 60000;
-    final static long hour = 60*minute;
-    final static long day = 24 * hour;
-    final static long week = 7 * day;
-    final static long month = 30*day;
-    final static long durations[] = {5*minute,10*minute, 15*minute, 30*minute,hour,2*hour,5*hour,10*hour,day,2*day,3*day,5*day,week,2*week,month,2*month,3*month};
+
+
 
     Task task = null;
     boolean newTask = false;
@@ -65,7 +61,7 @@ public class AddTaskActivity extends AppCompatActivity {
             task.deadline = System.currentTimeMillis();
             task.description = "";
             task.entryReference = 0;
-            task.estimatedDuration = durations[0];
+            task.estimatedDuration = Task.durations[0];
             task.text = "";
             newTask = true;
         }
@@ -147,7 +143,7 @@ public class AddTaskActivity extends AppCompatActivity {
         durationSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(Spinner spinner, View view, int i, long l) {
-                task.estimatedDuration = durations[i];
+                task.estimatedDuration = Task.durations[i];
             }
         });
     }
@@ -201,8 +197,8 @@ public class AddTaskActivity extends AppCompatActivity {
         timeEdit.setText(timeFormat.format(new Date(task.deadline)));
 
         Spinner durationSpinner = (Spinner)findViewById(R.id.spinner_duration);
-        for(int i=0;i<durations.length;i++) {
-            if (task.estimatedDuration == durations[i]) {
+        for(int i=0;i<Task.durations.length;i++) {
+            if (task.estimatedDuration == Task.durations[i]) {
                 durationSpinner.setSelection(i);
                 break;
             }
