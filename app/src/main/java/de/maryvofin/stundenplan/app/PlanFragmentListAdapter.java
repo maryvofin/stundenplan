@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.List;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
+import de.maryvofin.stundenplan.app.database.Task;
 
 public class PlanFragmentListAdapter extends ArrayAdapter<PlanEntry> {
 
@@ -114,6 +115,15 @@ public class PlanFragmentListAdapter extends ArrayAdapter<PlanEntry> {
                     generateDetailsDialog(entry);
                 }
             });
+
+            //Nutzen des CommentCount als TaskCount
+            int taskCount = Task.filterWithPlanEntry(Task.findUncompletedTasks(),entry).size();
+            if(taskCount != 0) {
+                commentView.setText(""+taskCount);
+            }
+            else {
+                commentView.setText("");
+            }
 
         }
         else {

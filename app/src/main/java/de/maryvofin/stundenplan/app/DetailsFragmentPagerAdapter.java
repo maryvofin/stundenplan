@@ -8,11 +8,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 
-/**
- * Created by mark on 07.10.2015.
- */
+
 public class DetailsFragmentPagerAdapter extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 2;
+    final int PAGE_COUNT = 3;
     private Context context;
     private PlanEntry entry;
 
@@ -34,6 +32,10 @@ public class DetailsFragmentPagerAdapter extends FragmentPagerAdapter {
                 return f;
             case 1:
                 f = new PlanEntryAlternativesFragment();
+                f.setArguments(args);
+                return f;
+            case 2:
+                f = new TasksFragment();
                 f.setArguments(args);
                 return f;
         }

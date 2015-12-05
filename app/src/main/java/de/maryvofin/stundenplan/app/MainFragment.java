@@ -80,25 +80,29 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     }
 
     public void storeCurrentPage() {
-        ViewPager pager = (ViewPager)view.findViewById(R.id.pager);
-        SharedPreferences.Editor editor = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).edit();
-        editor.putInt("currentPage", pager.getCurrentItem());
-        editor.apply();
+        try {
+            ViewPager pager = (ViewPager) view.findViewById(R.id.pager);
+            SharedPreferences.Editor editor = getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).edit();
+            editor.putInt("currentPage", pager.getCurrentItem());
+            editor.apply();
+        }
+        catch(NullPointerException e) {
+            //Passiert ständig im Emulator
+        }
     }
 
     public void restoreCurrentPage() {
         ViewPager pager = (ViewPager)view.findViewById(R.id.pager);
-        pager.setCurrentItem(getStoredPage());
+        try {
+            pager.setCurrentItem(getStoredPage());
+        }
+        catch(NullPointerException e) {
+            //Ewiges Leid mit dem Emulator
+        }
     }
 
     public int getStoredPage() {
-        try {
-            return getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).getInt("currentPage", 500);
-        }
-        catch(NullPointerException e) {
-            
-        }
-        return 500;
+        return getActivity().getSharedPreferences("plan", Context.MODE_PRIVATE).getInt("currentPage", 500);
     }
 
 
@@ -124,7 +128,7 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
             }
         }
         catch(NullPointerException e) {
-            //Kann auftreten wenn funktion nach app-stop aufgerufen wird
+            //Immer dieser dooge Emulator
         }
     }
 

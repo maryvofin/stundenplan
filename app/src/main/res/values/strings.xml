@@ -38,6 +38,7 @@
     <string-array name="text_details_activity_tabslabels">
         <item>Details</item>
         <item>Alternativen</item>
+        <item>Aufgaben</item>
     </string-array>
 
     <string name="text_activity_main_leftdrawer_profile">Profil:</string>
@@ -79,6 +80,40 @@
     <string name="text_link_eva">EVA</string>
     <string name="text_link_webmail">Webmail</string>
     <string name="text_min1letter">Es muss mindestens 1 Zeichen eingegeben werden</string>
+    <string name="text_tasks">Aufgaben</string>
+    <string name="text_task">Aufgabe</string>
+    <string name="title_confirm">bestätigen</string>
+    <string name="title_abort">abbrechen</string>
+    <string name="text_task_description">Titel</string>
+    <string name="text_task_content">Beschreibung</string>
+    <string name="text_task_deadline_date">Datum</string>
+    <string name="text_task_deadline_time">Zeit</string>
+    <string name="text_task_duration">Aufwand</string>
+    <string name="text_task_done">Erledigt</string>
+    <string name="text_deadline">Abgabe</string>
+    <string name="text_delete">löschen</string>
+    <string name="text_abort">abbrechen</string>
+    <string name="text_delete_task_question">Aufgabe löschen?</string>
+
+    <string-array name="durations">
+        <item>5 Minuten</item>
+        <item>10 Minuten</item>
+        <item>15 Minuten</item>
+        <item>30 Minuten</item>
+        <item>1 Stunde</item>
+        <item>2 Stunden</item>
+        <item>5 Stunden</item>
+        <item>10 Stunden</item>
+        <item>1 Tag</item>
+        <item>2 Tage</item>
+        <item>3 Tage</item>
+        <item>5 Tage</item>
+        <item>1 Woche</item>
+        <item>2 Wochen</item>
+        <item>1 Monat</item>
+        <item>2 Monate</item>
+        <item>3 Monate</item>
+    </string-array>
 
     <color name="color_divider">#00ACFF</color>
     <color name="textcolor_pageheader">#00ACFF</color>
@@ -89,6 +124,8 @@
     <color name ="textcolor_entry_intersects">#D27237</color>
     <color name="textcolor_no_events">#BBBBBB</color>
     <color name="textcolor_pause_entry">#BBBBBB</color>
+
+
 
 
     <string name="text_update_hourly">Stündliches Update</string>
