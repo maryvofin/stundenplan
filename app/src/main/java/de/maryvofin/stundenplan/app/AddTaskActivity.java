@@ -54,6 +54,7 @@ public class AddTaskActivity extends AppCompatActivity {
         if(args != null) ser = args.getSerializable("task");
         if(ser != null) {
             task = (Task)ser;
+            if(task.description.equals("")) newTask=true;
         }
         else {
             task = new Task();
