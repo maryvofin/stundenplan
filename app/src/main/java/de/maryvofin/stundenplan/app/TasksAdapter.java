@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
 
     void updateData() {
         taskList = (referenceEntry != null) ? Task.filterWithPlanEntry(Task.findUncompletedTasks(),referenceEntry): Task.findUncompletedTasks();
+        Collections.sort(taskList);
         notifyDataSetChanged();
     }
 

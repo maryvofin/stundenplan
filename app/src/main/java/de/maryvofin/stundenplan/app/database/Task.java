@@ -8,7 +8,7 @@ import java.util.List;
 import info.quantumflux.model.QuantumFluxRecord;
 import info.quantumflux.model.query.Select;
 
-public class Task extends QuantumFluxRecord<Task>{
+public class Task extends QuantumFluxRecord<Task> implements Comparable<Task>{
 
     public int entryReference;
     public long deadline;
@@ -57,5 +57,10 @@ public class Task extends QuantumFluxRecord<Task>{
         }
 
         return newList;
+    }
+
+    @Override
+    public int compareTo(Task another) {
+        return (int)(deadline - another.deadline);
     }
 }
