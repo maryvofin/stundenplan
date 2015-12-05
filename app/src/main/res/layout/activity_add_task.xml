@@ -80,7 +80,7 @@
                 app:spn_labelEnable="true"
                 app:spn_label="@string/text_task_duration"
                 android:layout_marginTop="4dp"
-                app:spn_labelTextSize="@dimen/label_text_size"
+                app:spn_labelTextSize="12sp"
                 app:spn_dividerHeight="2dp"
                 app:spn_labelPadding="2dp"
                 >
