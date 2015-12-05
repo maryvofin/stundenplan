@@ -49,6 +49,8 @@ public class AddTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+        System.out.println("test1");
+
         Bundle args = getIntent().getExtras();
         Object ser = null;
         if(args != null) ser = args.getSerializable("task");
@@ -67,6 +69,8 @@ public class AddTaskActivity extends AppCompatActivity {
             newTask = true;
         }
 
+        System.out.println("test2");
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,11 +86,12 @@ public class AddTaskActivity extends AppCompatActivity {
         Spinner durationSpinner = (Spinner)findViewById(R.id.spinner_duration);
         durationSpinner.setAdapter(spinnerAdapter);
 
+        System.out.println("test3");
 
         setValues();
         setListeners();
 
-
+        System.out.println("test4");
     }
 
     void setListeners() {

@@ -19,6 +19,8 @@ import android.view.animation.DecelerateInterpolator;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
+import java.util.Calendar;
+
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
 import de.maryvofin.stundenplan.app.utils.RecyclerScrollListener;

@@ -11,10 +11,10 @@ import info.quantumflux.model.query.Select;
 public class Task extends QuantumFluxRecord<Task> implements Comparable<Task>{
 
     public int entryReference;
-    public long deadline;
-    public String text;
-    public String description;
-    public long estimatedDuration;
+    public long deadline = System.currentTimeMillis();
+    public String text = "";
+    public String description = "";
+    public long estimatedDuration =durations[0];
     public boolean completed = false;
 
     final static long minute = 60000;
@@ -23,6 +23,8 @@ public class Task extends QuantumFluxRecord<Task> implements Comparable<Task>{
     final static long week = 7 * day;
     final static long month = 30*day;
     public final static long durations[] = {5*minute,10*minute, 15*minute, 30*minute,hour,2*hour,5*hour,10*hour,day,2*day,3*day,5*day,week,2*week,month,2*month,3*month};
+
+
 
 
     public static List<Task> findUncompletedTasks() {
