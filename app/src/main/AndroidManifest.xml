@@ -41,7 +41,7 @@
 
         <meta-data android:name="AUTHORITY" android:value="de.maryvofin.stundenplan.app" />
         <meta-data android:name="DATABASE_NAME" android:value="database.sqlite" />
-        <meta-data android:name="DATABASE_VERSION" android:value="1" />
+        <meta-data android:name="DATABASE_VERSION" android:value="2" />
         <meta-data android:name="PACKAGE_NAME" android:value="de.maryvofin.stundenplan.app" />
 
         <provider

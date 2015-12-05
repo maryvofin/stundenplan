@@ -23,7 +23,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
 
     PlanEntry referenceEntry;
     List<Task> taskList;
-    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.MEDIUM);
+    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT);
     RecyclerView recyclerView;
 
 
