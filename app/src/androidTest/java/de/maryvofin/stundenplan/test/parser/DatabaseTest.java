@@ -74,7 +74,10 @@ public class DatabaseTest {
         Parser p = new Parser(InstrumentationRegistry.getContext());
         p.parse();
         Database db = Database.getInstance();
-        List<PlanEntry> entries = db.getTimeEvents(InstrumentationRegistry.getContext(),System.currentTimeMillis());
+        List<PlanEntry> entries = db.getTimeEvents(InstrumentationRegistry.getContext(), System.currentTimeMillis());
+
+        Calendar calendar = Calendar.getInstance();
+        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
 
         Assert.assertFalse(entries.isEmpty());
     }
