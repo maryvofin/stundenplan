@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -72,7 +74,8 @@ public class TasksFragment extends Fragment {
             }
         });
 
-
+        Animation animation = AnimationUtils.loadAnimation(getContext(),R.anim.simple_grow);
+        fab.startAnimation(animation);
 
         return view;
     }
