@@ -11,16 +11,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
+import de.maryvofin.stundenplan.app.utils.RecyclerScrollListener;
 
 public class TasksFragment extends Fragment {
     View view;
     PlanEntry entry = null;
+    int fabMargin;
 
     TasksAdapter adapter;
 
@@ -28,6 +32,8 @@ public class TasksFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tasks, container, false);
+
+        fabMargin = getResources().getDimensionPixelSize(R.dimen.fab_margin);
 
         final FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
         fab.setImageDrawable(
@@ -54,6 +60,17 @@ public class TasksFragment extends Fragment {
         adapter = new TasksAdapter(entry, recyclerView);
         recyclerView.setAdapter(adapter);
 
+        recyclerView.addOnScrollListener(new RecyclerScrollListener() {
+            @Override
+            public void show() {
+                fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+            }
+
+            @Override
+            public void hide() {
+                fab.animate().translationY(fab.getHeight()+fabMargin).setInterpolator(new AccelerateInterpolator(2)).start();
+            }
+        });
 
 
 
