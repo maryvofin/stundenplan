@@ -52,7 +52,8 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         Task task = taskList.get(position);
         holder.secondaryTextView.setText(holder.view.getContext().getResources().getString(R.string.text_deadline)+": "+dateFormat.format(new Date(task.deadline)));
-        holder.primaryTextView.setText(task.description);
+        String text = (task.text.equals("")) ? task.description : task.description+" - "+task.text;
+        holder.primaryTextView.setText(text);
     }
 
     @Override
