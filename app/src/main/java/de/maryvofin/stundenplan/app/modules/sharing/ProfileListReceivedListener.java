@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.sharing;
 
 import android.bluetooth.BluetoothDevice;
 

@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.entrydetails;
 
 
 import android.annotation.SuppressLint;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.text.DateFormatSymbols;
 
+import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 
 /**

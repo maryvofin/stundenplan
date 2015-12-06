@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.plan;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 

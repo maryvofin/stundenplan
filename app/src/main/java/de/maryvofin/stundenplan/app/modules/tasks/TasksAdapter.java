@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.tasks;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
 

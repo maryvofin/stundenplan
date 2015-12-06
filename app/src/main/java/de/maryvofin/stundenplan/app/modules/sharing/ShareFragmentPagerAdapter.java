@@ -1,9 +1,12 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.sharing;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import de.maryvofin.stundenplan.app.utils.BluetoothService;
+import de.maryvofin.stundenplan.app.R;
 
 /**
  * Created by mark on 14.10.2015.

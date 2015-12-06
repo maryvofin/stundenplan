@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.utils;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -19,6 +19,7 @@ import java.util.UUID;
 
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.Profile;
+import de.maryvofin.stundenplan.app.modules.sharing.ProfileListReceivedListener;
 
 /**
  * Created by mark on 14.10.2015.

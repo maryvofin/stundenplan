@@ -10,7 +10,7 @@
         android:id="@+id/activity_main_content"
         android:orientation="vertical">
 
-        <de.maryvofin.stundenplan.app.ViewPager
+        <de.maryvofin.stundenplan.app.utils.ViewPager
             android:id="@+id/activity_main_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
                 android:clickable="true"
                 android:textColor="@color/textcolor_pageheader"></android.support.v4.view.ClickablePagerTabStrip>
 
-        </de.maryvofin.stundenplan.app.ViewPager>
+        </de.maryvofin.stundenplan.app.utils.ViewPager>
 
         <TextView
             android:layout_width="match_parent"

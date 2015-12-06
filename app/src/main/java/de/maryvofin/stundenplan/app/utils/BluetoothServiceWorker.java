@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.utils;
 
 import android.bluetooth.BluetoothSocket;
 

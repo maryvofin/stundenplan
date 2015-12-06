@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.plan;
 
 
 import android.support.v4.app.Fragment;
@@ -15,9 +15,6 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by mark on 02.10.2015.
- */
 public class PlanPagerAdapter extends FragmentStatePagerAdapter {
 
     Context context;
@@ -51,7 +48,6 @@ public class PlanPagerAdapter extends FragmentStatePagerAdapter {
         int pageOffset = 500 - position;
         c.add(Calendar.DAY_OF_YEAR,-pageOffset);
         long planTime = c.getTimeInMillis();
-        //System.out.println(String.format("%tA",c)+" "+ DateFormat.getDateInstance(DateFormat.LONG).format(new Date(planTime)));
         return String.format("%tA",c)+" "+ DateFormat.getDateInstance(DateFormat.LONG).format(new Date(planTime));
     }
 

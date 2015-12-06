@@ -6,6 +6,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import de.maryvofin.stundenplan.app.modules.sharing.ShareFragmentPagerAdapter;
+import de.maryvofin.stundenplan.app.utils.BluetoothService;
+import de.maryvofin.stundenplan.app.utils.ViewPager;
+
 /**
  * Created by mark on 13.10.2015.
  */

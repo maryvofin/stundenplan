@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.planconfig;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 

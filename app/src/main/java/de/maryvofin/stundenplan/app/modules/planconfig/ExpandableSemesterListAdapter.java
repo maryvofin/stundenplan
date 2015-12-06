@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.planconfig;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Profile;

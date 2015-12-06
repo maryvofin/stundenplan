@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -36,18 +35,15 @@ import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondarySwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
-import com.mikepenz.materialdrawer.model.SwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.IProfileAdapter;
 import de.maryvofin.stundenplan.app.database.Profile;
+import de.maryvofin.stundenplan.app.modules.plan.MainFragment;
+import de.maryvofin.stundenplan.app.modules.planconfig.SemesterSelectionFragment;
+import de.maryvofin.stundenplan.app.modules.tasks.TasksFragment;
 
 public class MainActivity extends AppCompatActivity implements ProgressDialog.OnDismissListener{
 

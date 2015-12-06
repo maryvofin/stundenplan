@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.plan;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,7 +21,9 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Stack;
+
+import de.maryvofin.stundenplan.app.R;
+import de.maryvofin.stundenplan.app.utils.ViewPager;
 
 public class MainFragment extends Fragment implements android.support.v4.view.ViewPager.OnPageChangeListener {
 

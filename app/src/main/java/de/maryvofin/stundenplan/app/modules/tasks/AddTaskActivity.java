@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.tasks;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -27,6 +27,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;

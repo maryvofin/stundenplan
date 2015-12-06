@@ -16,7 +16,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ClickablePagerTabStrip;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -39,6 +38,9 @@ import java.util.Date;
 
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.Profile;
+import de.maryvofin.stundenplan.app.modules.plan.PlanPagerAdapter;
+import de.maryvofin.stundenplan.app.modules.planconfig.ExpandableSemesterListAdapter;
+import de.maryvofin.stundenplan.app.utils.ViewPager;
 
 public class MainActivityOld extends FragmentActivity implements ProgressDialog.OnDismissListener {
 

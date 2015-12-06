@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.entrydetails;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
+import de.maryvofin.stundenplan.app.modules.tasks.TasksFragment;
 
 
 public class DetailsFragmentPagerAdapter extends FragmentPagerAdapter {

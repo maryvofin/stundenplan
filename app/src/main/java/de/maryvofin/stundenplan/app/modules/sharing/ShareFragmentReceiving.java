@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.sharing;
 
 import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.ListView;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.maryvofin.stundenplan.app.utils.BluetoothService;
+import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.Profile;
 
 /**

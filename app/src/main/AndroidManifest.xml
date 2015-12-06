@@ -19,14 +19,14 @@
             android:name=".MainActivityOld"
             android:label="@string/app_name" >
         </activity>
-        <activity android:name=".AddTaskActivity">
+        <activity android:name=".modules.tasks.AddTaskActivity">
 
         </activity>
         <activity
-            android:name=".GroupSelectionActivity"
+            android:name=".modules.planconfig.GroupSelectionActivity"
             android:label="@string/activity_title_settings" >
         </activity>
-        <activity android:name=".DetailsActivity" />
+        <activity android:name=".modules.entrydetails.DetailsActivity" />
         <activity android:name=".ShareActivity" />
         <activity
             android:name=".MainActivity"

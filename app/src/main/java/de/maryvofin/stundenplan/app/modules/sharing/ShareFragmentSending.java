@@ -1,4 +1,4 @@
-package de.maryvofin.stundenplan.app;
+package de.maryvofin.stundenplan.app.modules.sharing;
 
 
 import android.os.Bundle;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import de.maryvofin.stundenplan.app.database.Database;
+import de.maryvofin.stundenplan.app.utils.BluetoothService;
+import de.maryvofin.stundenplan.app.R;
 
 /**
  * Created by mark on 14.10.2015.
