@@ -36,6 +36,8 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main,container,false);
 
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
+        PlanFragmentAdapter.fab = fab;
         planPagerAdapter = new PlanPagerAdapter(this.getChildFragmentManager(), this.getContext());
         setAdapter();
         setLastUpdateText(false);
@@ -48,7 +50,7 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

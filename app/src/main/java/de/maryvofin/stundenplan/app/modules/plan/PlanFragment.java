@@ -3,6 +3,8 @@ package de.maryvofin.stundenplan.app.modules.plan;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import java.util.List;
 import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
+import de.maryvofin.stundenplan.app.utils.FABAnimator;
 
 public class PlanFragment extends Fragment {
 
@@ -63,17 +66,16 @@ public class PlanFragment extends Fragment {
             lastEntry = entry;
         }
 
-
-
-
-        ListView listView = (ListView)view.findViewById(R.id.fragment_plan_list);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler);
 
         if(events.size() != 0) {
-            PlanFragmentListAdapter planFragmentListAdapter = new PlanFragmentListAdapter(getActivity(),eventsWithPauses,planPage);
-            listView.setAdapter(planFragmentListAdapter);
+            PlanFragmentAdapter planFragmentAdapter = new PlanFragmentAdapter(getActivity(),recyclerView,eventsWithPauses,planPage);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+            recyclerView.setAdapter(planFragmentAdapter);
+            recyclerView.addOnScrollListener(new FABAnimator(PlanFragmentAdapter.fab));
         }
         else {
-            listView.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
             View noEventsView = view.findViewById(R.id.fragment_plan_noevents);
             noEventsView.setVisibility(View.VISIBLE);
         }
