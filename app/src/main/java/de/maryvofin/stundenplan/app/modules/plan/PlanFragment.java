@@ -72,7 +72,7 @@ public class PlanFragment extends Fragment {
             PlanFragmentAdapter planFragmentAdapter = new PlanFragmentAdapter(getActivity(),recyclerView,eventsWithPauses,planPage);
             recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
             recyclerView.setAdapter(planFragmentAdapter);
-            recyclerView.addOnScrollListener(PlanFragmentAdapter.fabAnimator);
+            if(planPage != 500) recyclerView.addOnScrollListener(PlanFragmentAdapter.fabAnimator);
         }
         else {
             recyclerView.setVisibility(View.GONE);
