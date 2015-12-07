@@ -40,7 +40,6 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
         FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
         PlanFragmentAdapter.fab = fab;
         PlanFragmentAdapter.fabAnimator = new FABAnimator(fab);
-        PlanFragmentAdapter.fabAnimator.grow();
         planPagerAdapter = new PlanPagerAdapter(this.getChildFragmentManager(), this.getContext());
         setAdapter();
         setLastUpdateText(false);
@@ -191,12 +190,12 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
 
     @Override
     public void onPageSelected(int position) {
-
         storeCurrentPage();
         if(position == 500) {
             PlanFragmentAdapter.fabAnimator.hide();
         }
         else {
+            PlanFragmentAdapter.fabAnimator.grow();
             PlanFragmentAdapter.fabAnimator.show();
         }
 

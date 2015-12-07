@@ -1,6 +1,7 @@
 package de.maryvofin.stundenplan.app.utils;
 
 import android.support.design.widget.FloatingActionButton;
+import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -21,11 +22,13 @@ public class FABAnimator extends RecyclerScrollListener{
 
     @Override
     public void show() {
+        fab.setVisibility(View.VISIBLE);
         fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
     }
 
     @Override
     public void hide() {
+        if(fab.getHeight() == 0) fab.setVisibility(View.GONE);
         fab.animate().translationY(fab.getHeight()+fabMargin).setInterpolator(new AccelerateInterpolator(2)).start();
     }
 
