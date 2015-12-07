@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,7 @@ public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapte
         TextView lecturerView;
         TextView roomView;
         TextView timeView;
+        CardView cardView;
 
         public EntryViewHolder(View v) {
             super(v);
@@ -72,6 +74,7 @@ public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapte
             lecturerView = (TextView) view.findViewById(R.id.view_planentry_text_lecturer);
             roomView = (TextView) view.findViewById(R.id.view_planentry_text_room);
             timeView = (TextView) view.findViewById(R.id.view_planentry_text_time);
+            cardView = (CardView)view.findViewById(R.id.card_view);
         }
 
         @Override
@@ -103,7 +106,7 @@ public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapte
 
             //Bestimmen ob vergangenheit
             if(futurepast < 500 || ( futurepast == 500 && currTimeCode > entryEndCode  )) {
-                view.setBackgroundColor(ContextCompat.getColor(activity, R.color.bgcolor_entry_past));
+                cardView.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.bgcolor_entry_past));
             }
 
             //bestimmen ob überschneidung
