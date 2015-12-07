@@ -20,17 +20,43 @@ import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
 import de.maryvofin.stundenplan.app.modules.entrydetails.DetailsActivity;
-import de.maryvofin.stundenplan.app.modules.tasks.TasksAdapter;
 import de.maryvofin.stundenplan.app.utils.FABAnimator;
 
 public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
 
     public static FloatingActionButton fab;
     public static FABAnimator fabAnimator;
-    List<PlanEntry> entries;
+    protected List<PlanEntry> entries;
     RecyclerView recyclerView;
     int futurepast;
     Activity activity;
+    boolean highlightCurrent = true;
+    boolean highlightPast = true;
+    boolean highlightIntersects = true;
+
+    public void setHighlightCurrent(boolean highlightCurrent) {
+        this.highlightCurrent = highlightCurrent;
+    }
+
+    public void setHighlightPast(boolean highlightPast) {
+        this.highlightPast = highlightPast;
+    }
+
+    public void setHighlightIntersects(boolean highlightIntersects) {
+        this.highlightIntersects = highlightIntersects;
+    }
+
+    public boolean isHighlightCurrent() {
+        return highlightCurrent;
+    }
+
+    public boolean isHighlightPast() {
+        return highlightPast;
+    }
+
+    public boolean isHighlightIntersects() {
+        return highlightIntersects;
+    }
 
     public static final int PAUSE_VIEW = 0;
     public static final int ENTRY_VIEW = 1;
@@ -57,15 +83,15 @@ public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapte
     }
 
     public class EntryViewHolder extends ViewHolder {
-        View view;
-        TextView typeView;
-        TextView commentView;
-        TextView groupView;
-        TextView labelView;
-        TextView lecturerView;
-        TextView roomView;
-        TextView timeView;
-        CardView cardView;
+        protected View view;
+        protected TextView typeView;
+        protected TextView commentView;
+        protected TextView groupView;
+        protected TextView labelView;
+        protected TextView lecturerView;
+        protected TextView roomView;
+        protected TextView timeView;
+        protected CardView cardView;
 
         public EntryViewHolder(View v) {
             super(v);
@@ -109,7 +135,7 @@ public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapte
 
             //Bestimmen ob vergangenheit
             if(futurepast < 500 || ( futurepast == 500 && currTimeCode > entryEndCode  )) {
-                cardView.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.bgcolor_entry_past));
+                if(highlightPast) cardView.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.bgcolor_entry_past));
             }
 
             //bestimmen ob überschneidung
@@ -118,10 +144,10 @@ public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapte
             //Bestimmen ob aktuell
             boolean current = futurepast == 500 && currTimeCode >= entryStartCode && currTimeCode <= entryEndCode;
             if(current) {
-                labelView.setTextColor(ContextCompat.getColor(activity,R.color.primary));
+                if(highlightCurrent) labelView.setTextColor(ContextCompat.getColor(activity,R.color.primary));
             }
             else if(intersects) {
-                labelView.setTextColor(ContextCompat.getColor(activity, R.color.textcolor_entry_intersects));
+                if(highlightIntersects) labelView.setTextColor(ContextCompat.getColor(activity, R.color.textcolor_entry_intersects));
             }
             else {
                 labelView.setTextColor(timeView.getTextColors().getDefaultColor());
@@ -145,9 +171,9 @@ public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapte
     }
 
     public class PauseViewHolder extends ViewHolder {
-        View view;
+        protected View view;
 
-        TextView pauseTextView;
+        protected TextView pauseTextView;
 
         public PauseViewHolder(View v) {
             super(v);
