@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -28,6 +29,8 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.holder.BadgeStyle;
+import com.mikepenz.materialdrawer.holder.StringHolder;
 import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
@@ -41,6 +44,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.IProfileAdapter;
 import de.maryvofin.stundenplan.app.database.Profile;
+import de.maryvofin.stundenplan.app.database.Task;
 import de.maryvofin.stundenplan.app.modules.plan.MainFragment;
 import de.maryvofin.stundenplan.app.modules.planconfig.SemesterSelectionFragment;
 import de.maryvofin.stundenplan.app.modules.tasks.TasksFragment;
@@ -59,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     SemesterSelectionFragment semesterSelectionFragment = null;
     MainFragment mainFragment = null;
     Fragment currentFragment = null;
+
+    PrimaryDrawerItem tasksItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
 
         final PrimaryDrawerItem planItem = new PrimaryDrawerItem().withName(R.string.text_plan).withIcon(GoogleMaterial.Icon.gmd_event).withIdentifier(IDENTIFIER_PLAN);
         final PrimaryDrawerItem eventSelectionItem = new PrimaryDrawerItem().withName(R.string.text_eventselection).withIcon(GoogleMaterial.Icon.gmd_list).withIdentifier(IDENTIFIER_SELECTION);
-        final PrimaryDrawerItem tasksItem = new PrimaryDrawerItem().withName(R.string.text_tasks).withIcon(GoogleMaterial.Icon.gmd_assignment).withIdentifier(IDENTIFIER_TASKS);
+        tasksItem = new PrimaryDrawerItem().withName(R.string.text_tasks).withIcon(GoogleMaterial.Icon.gmd_assignment).withIdentifier(IDENTIFIER_TASKS).withBadge("0");
 
         final SecondaryDrawerItem infoItem = new SecondaryDrawerItem().withName(R.string.text_info).withIcon(GoogleMaterial.Icon.gmd_info).withSelectable(false);
 
@@ -230,6 +236,10 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
         }
 
 
+    }
+
+    public void updateTaskBadge() {
+        drawer.updateBadge(tasksItem.getIdentifier(), new StringHolder(""+Task.findUncompletedTasks().size()));
     }
 
     void showMin1LetterDialog(Profile profile) {
@@ -347,6 +357,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     @Override
     protected void onResume() {
         super.onResume();
+        updateTaskBadge();
         if(semesterSelectionFragment != null) semesterSelectionFragment.restoreSemesterListState();
         if(mainFragment != null) mainFragment.restoreCurrentPage();
     }

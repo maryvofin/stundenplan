@@ -32,8 +32,6 @@ public class TasksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tasks, container, false);
 
-
-
         final FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
         fab.setImageDrawable(
                 new IconicsDrawable(

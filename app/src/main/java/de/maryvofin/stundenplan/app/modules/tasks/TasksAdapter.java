@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import de.maryvofin.stundenplan.app.MainActivity;
 import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
@@ -83,10 +84,14 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
                         Task task = taskList.get(i);
                         task.delete();
                         updateData();
+                        ((MainActivity) v.getContext()).updateTaskBadge();
                     }
                 });
-        db.setNegativeButton(v.getContext().getResources().getString(R.string.text_abort),null);
+        db.setNegativeButton(v.getContext().getResources().getString(R.string.text_abort), null);
         db.show();
+
+
+
         return true;
     }
 
