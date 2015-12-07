@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.text.format.DateUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     public static final int IDENTIFIER_PLAN = 4;
     public static final int IDENTIFIER_SELECTION = 5;
     public static final int IDENTIFIER_TASKS = 6;
+    public static final int IDENTIFIER_UPDATE_STAND = 7;
 
     Drawer drawer;
     AccountHeader accountHeader;
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     Fragment currentFragment = null;
 
     PrimaryDrawerItem tasksItem;
+    SecondaryDrawerItem updateItem;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
         final PrimaryDrawerItem planItem = new PrimaryDrawerItem().withName(R.string.text_plan).withIcon(GoogleMaterial.Icon.gmd_event).withIdentifier(IDENTIFIER_PLAN);
         final PrimaryDrawerItem eventSelectionItem = new PrimaryDrawerItem().withName(R.string.text_eventselection).withIcon(GoogleMaterial.Icon.gmd_list).withIdentifier(IDENTIFIER_SELECTION);
         tasksItem = new PrimaryDrawerItem().withName(R.string.text_tasks).withIcon(GoogleMaterial.Icon.gmd_assignment).withIdentifier(IDENTIFIER_TASKS).withBadge("0");
+        updateItem = new SecondaryDrawerItem().withIcon(GoogleMaterial.Icon.gmd_refresh).withName(R.string.text_update).withIdentifier(IDENTIFIER_UPDATE_STAND).withBadge(R.string.text_updating).withSelectable(false);
 
         final SecondaryDrawerItem infoItem = new SecondaryDrawerItem().withName(R.string.text_info).withIcon(GoogleMaterial.Icon.gmd_info).withSelectable(false);
 
@@ -151,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                         ,tasksItem
                         ,new DividerDrawerItem()
                         ,refreshIntervalSwitch
+                        ,updateItem
                         ,new SectionDrawerItem().withName(R.string.text_links)
                         ,sisItem
                         ,leaItem
@@ -171,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                         if (drawerItem == planItem) showMainFragment();
                         if (drawerItem == infoItem) showInfoDialog();
                         if (drawerItem == tasksItem) showTasksFragment();
+                        if (drawerItem == updateItem) updateDatabase(false);
                         return false;
                     }
                 })
@@ -239,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
     }
 
     public void updateTaskBadge() {
-        drawer.updateBadge(tasksItem.getIdentifier(), new StringHolder(""+Task.findUncompletedTasks().size()));
+        drawer.updateBadge(tasksItem.getIdentifier(), new StringHolder("" + Task.findUncompletedTasks().size()));
     }
 
     void showMin1LetterDialog(Profile profile) {
@@ -378,11 +386,15 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
 
     void prepareStart() {
         //Start vorbereiten
+        updateDatabase(true);
+    }
+
+    public void updateDatabase(boolean timed) {
         Database db = Database.getInstance();
         long updateIntervalMinutes = getSharedPreferences("update", Context.MODE_PRIVATE).getLong("interval", 60);
         long lastUpdate = getSharedPreferences("update",Context.MODE_PRIVATE).getLong("lastupdate", 0);
         boolean allEventsEmpty = db.getAllEvents(this).isEmpty();
-        if(allEventsEmpty || lastUpdate+(updateIntervalMinutes*60*1000) < System.currentTimeMillis()) {
+        if(allEventsEmpty || lastUpdate+(updateIntervalMinutes*60*1000) < System.currentTimeMillis() || !timed) {
             ProgressDialog dialog = (allEventsEmpty) ? ProgressDialog.show(this, "",
                     "Stundenplan wird heruntergeladen...", true): null;
             if (dialog!= null) dialog.setOnDismissListener(this);
@@ -392,10 +404,26 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
             updater.execute(set);
             setLastUpdateText(true);
         }
+        else {
+            setLastUpdateText(false);
+        }
     }
 
     public void setLastUpdateText(boolean updating) {
-        if (mainFragment != null) mainFragment.setLastUpdateText(updating);
+        try {
+            long lastUpdate = getSharedPreferences("update", Context.MODE_PRIVATE).getLong("lastupdate", 0);
+            String timeSpanText = DateUtils.getRelativeTimeSpanString(lastUpdate,System.currentTimeMillis(),DateUtils.MINUTE_IN_MILLIS).toString();
+            //updateItem.withName(getResources().getString(R.string.text_update_stand) + ": "+timeSpanText);
+            if(updating) {
+                drawer.updateBadge(IDENTIFIER_UPDATE_STAND,new StringHolder(R.string.text_updating));
+            }
+            else {
+                drawer.updateBadge(IDENTIFIER_UPDATE_STAND,new StringHolder(timeSpanText));
+            }
+        }
+        catch(Exception e) {
+            //Mal wieder doof
+        }
     }
 
     void showInfoDialog() {

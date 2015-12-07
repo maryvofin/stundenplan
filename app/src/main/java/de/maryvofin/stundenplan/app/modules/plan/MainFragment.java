@@ -54,7 +54,6 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
 
         planPagerAdapter = new PlanPagerAdapter(this.getChildFragmentManager(), this.getContext());
         setAdapter();
-        setLastUpdateText(false);
 
         ClickablePagerTabStrip pagerTabStrip = (ClickablePagerTabStrip)view.findViewById(R.id.tabstrip);
         pagerTabStrip.setOnClickListener(new View.OnClickListener() {
@@ -127,28 +126,8 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     public void update() {
         storeCurrentPage();
         setAdapter();
-        setLastUpdateText(false);
     }
 
-    @SuppressLint("SetTextI18n")
-    public void setLastUpdateText(boolean updating) {
-        try {
-            TextView textView = (TextView) view.findViewById(R.id.lastupdate_text);
-            long lastUpdate = getActivity().getSharedPreferences("update", Context.MODE_PRIVATE).getLong("lastupdate", 0);
-
-            if (updating) {
-                textView.setText(getResources().getString(R.string.text_updating));
-            } else {
-                String text = (lastUpdate != 0) ? DateFormat.getDateInstance(DateFormat.MEDIUM).format(new Date(lastUpdate))
-                        + " " + DateFormat.getTimeInstance(DateFormat.MEDIUM).format(new Date(lastUpdate)) + " " + getResources().getString(R.string.text_clock)
-                        : getResources().getString(R.string.text_no_update);
-                textView.setText(getResources().getString(R.string.text_last_update) + ": " + text);
-            }
-        }
-        catch(NullPointerException e) {
-            //Immer dieser dooge Emulator
-        }
-    }
 
     public void showSelectDayDialog() {
         final ViewPager viewPager = (ViewPager)view.findViewById(R.id.pager);

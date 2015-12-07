@@ -33,12 +33,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"/>
 
-    <TextView
-        android:layout_above="@id/lastupdate_text"
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/primary"/>
+
     </RelativeLayout>
 
         <android.support.design.widget.FloatingActionButton

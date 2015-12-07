@@ -70,7 +70,8 @@
 
     <string name="no_events">Keine Veranstaltungen gefunden</string>
 
-    <string name="text_updating">aktualisiere</string>
+    <string name="text_updating">updating</string>
+    <string name="text_update">Aktualisieren</string>
     <string name="text_last_update">letztes Update</string>
     <string name="text_clock">Uhr</string>
     <string name="text_no_update">-</string>
@@ -94,6 +95,8 @@
     <string name="text_delete">löschen</string>
     <string name="text_abort">abbrechen</string>
     <string name="text_delete_task_question">Aufgabe löschen?</string>
+    <string name="text_update_stand">Stand</string>
+
 
     <string-array name="durations">
         <item>5 Minuten</item>
