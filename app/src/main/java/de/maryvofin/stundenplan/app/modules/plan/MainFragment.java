@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TextView;
+
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -40,6 +44,14 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
         FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
         PlanFragmentAdapter.fab = fab;
         PlanFragmentAdapter.fabAnimator = new FABAnimator(fab);
+        PlanFragmentAdapter.fab.setImageDrawable(
+                new IconicsDrawable(
+                        this.getContext())
+                        .icon(GoogleMaterial.Icon.gmd_undo)
+                        .color(Color.WHITE)
+                        .sizeDp(40));
+
+
         planPagerAdapter = new PlanPagerAdapter(this.getChildFragmentManager(), this.getContext());
         setAdapter();
         setLastUpdateText(false);
