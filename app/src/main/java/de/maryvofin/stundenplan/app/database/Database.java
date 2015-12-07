@@ -329,23 +329,26 @@ public class Database {
         }
     }
 
-    boolean overlaps(PlanEntry entry, List<PlanEntry> entries) {
+    public boolean overlaps(PlanEntry entry, List<PlanEntry> entries) {
+        return overlapCount(entry, entries) > 0;
+    }
+
+    public int overlapCount(PlanEntry entry, List<PlanEntry> entries) {
         int entryStartCode = entry.getStartHour()*60+entry.getStartMinute();
         int entryEndCode = entry.getEndHour()*60+entry.getEndMinute();
+        int count = 0;
 
         for(PlanEntry e: entries) {
             int eStartCode = e.getStartHour()*60+e.getStartMinute();
             int eEndCode = e.getEndHour()*60+e.getEndMinute();
 
-            if( (entryStartCode >= eStartCode && entryStartCode <= eEndCode) || (entryEndCode >= eStartCode && entryEndCode <= eEndCode) ) {
-
-                return true;
+            if( (eStartCode >= entryStartCode && entryEndCode > eStartCode ) || (entryStartCode >= eStartCode && eEndCode > entryStartCode) ) {
+                //System.out.println(entry.getEventName()+"("+entry.getStartHour()+")"+" - "+e.getEventName()+", "+e.getEventType()+" - "+entryStartCode+","+entryEndCode+"-"+eStartCode+","+eEndCode);
+                count++;
             }
 
         }
-
-
-        return false;
+        return count;
     }
 
     public void removeOverlappings(List<PlanEntry> listToCheck, List<PlanEntry> origList) {

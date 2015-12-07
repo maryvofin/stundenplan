@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import de.maryvofin.stundenplan.app.R;
+import de.maryvofin.stundenplan.app.database.Database;
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
 import de.maryvofin.stundenplan.app.modules.entrydetails.DetailsActivity;
@@ -112,23 +113,15 @@ public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapte
             }
 
             //bestimmen ob überschneidung
-            int positionCount = entries.size();
-            if(position > 0) {
-                PlanEntry lastEntry = entries.get(position-1);
-                int lastEntryEndCode = lastEntry.getEndHour()*60+lastEntry.getEndMinute();
-                if(entryStartCode < lastEntryEndCode) labelView.setTextColor(ContextCompat.getColor(activity,R.color.textcolor_entry_intersects));
-
-
-            }
-            if(position < positionCount-1) {
-                PlanEntry nextEntry = entries.get(position+1);
-                int nextEntryStartCode = nextEntry.getStartHour()*60+nextEntry.getStartMinute();
-                if(entryEndCode > nextEntryStartCode) labelView.setTextColor(ContextCompat.getColor(activity, R.color.textcolor_entry_intersects));
-            }
+            boolean intersects = Database.getInstance().overlapCount(entry,entries) > 1;
 
             //Bestimmen ob aktuell
-            if(futurepast == 500 && currTimeCode >= entryStartCode && currTimeCode <= entryEndCode) {
+            boolean current = futurepast == 500 && currTimeCode >= entryStartCode && currTimeCode <= entryEndCode;
+            if(current) {
                 labelView.setTextColor(ContextCompat.getColor(activity,R.color.primary));
+            }
+            else if(intersects) {
+                labelView.setTextColor(ContextCompat.getColor(activity, R.color.textcolor_entry_intersects));
             }
             else {
                 labelView.setTextColor(timeView.getTextColors().getDefaultColor());
