@@ -1,5 +1,6 @@
 package de.maryvofin.stundenplan.app.modules.entrydetails;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -40,6 +41,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.activity_details_sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabTextColors(Color.LTGRAY,Color.WHITE);
 
     }
 
