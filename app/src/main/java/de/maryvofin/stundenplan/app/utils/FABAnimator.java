@@ -12,13 +12,11 @@ public class FABAnimator extends RecyclerScrollListener{
 
     FloatingActionButton fab;
     int fabMargin;
+    boolean large = false;
 
     public FABAnimator(FloatingActionButton fab) {
         this.fab = fab;
         fabMargin = fab.getContext().getResources().getDimensionPixelSize(R.dimen.fab_margin);
-
-        Animation animation = AnimationUtils.loadAnimation(fab.getContext(), R.anim.simple_grow);
-        fab.startAnimation(animation);
     }
 
     @Override
@@ -29,5 +27,19 @@ public class FABAnimator extends RecyclerScrollListener{
     @Override
     public void hide() {
         fab.animate().translationY(fab.getHeight()+fabMargin).setInterpolator(new AccelerateInterpolator(2)).start();
+    }
+
+    public void grow() {
+        if(large) return;
+        Animation animation = AnimationUtils.loadAnimation(fab.getContext(), R.anim.simple_grow);
+        fab.startAnimation(animation);
+        large = true;
+    }
+
+    public void shrink() {
+        if(!large) return;
+        Animation animation = AnimationUtils.loadAnimation(fab.getContext(), R.anim.simple_shrink);
+        fab.startAnimation(animation);
+        large = false;
     }
 }

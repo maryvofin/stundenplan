@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import de.maryvofin.stundenplan.app.R;
+import de.maryvofin.stundenplan.app.utils.FABAnimator;
 import de.maryvofin.stundenplan.app.utils.ViewPager;
 
 public class MainFragment extends Fragment implements android.support.v4.view.ViewPager.OnPageChangeListener {
@@ -38,6 +39,8 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
 
         FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
         PlanFragmentAdapter.fab = fab;
+        PlanFragmentAdapter.fabAnimator = new FABAnimator(fab);
+        PlanFragmentAdapter.fabAnimator.grow();
         planPagerAdapter = new PlanPagerAdapter(this.getChildFragmentManager(), this.getContext());
         setAdapter();
         setLastUpdateText(false);
@@ -171,13 +174,8 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
         int currentItem = pager.getCurrentItem();
 
         if(currentItem != 500) {
-
-            pager.removeOnPageChangeListener(this);
-
             if (currentItem > 500) pager.setCurrentItem(currentItem - 1);
             if (currentItem < 500) pager.setCurrentItem(currentItem + 1);
-
-            pager.addOnPageChangeListener(this);
         }
         else {
             getActivity().finish();
@@ -195,6 +193,12 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     public void onPageSelected(int position) {
 
         storeCurrentPage();
+        if(position == 500) {
+            PlanFragmentAdapter.fabAnimator.hide();
+        }
+        else {
+            PlanFragmentAdapter.fabAnimator.show();
+        }
 
     }
 

@@ -20,10 +20,12 @@ import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
 import de.maryvofin.stundenplan.app.modules.entrydetails.DetailsActivity;
 import de.maryvofin.stundenplan.app.modules.tasks.TasksAdapter;
+import de.maryvofin.stundenplan.app.utils.FABAnimator;
 
 public class PlanFragmentAdapter extends RecyclerView.Adapter<PlanFragmentAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
 
     public static FloatingActionButton fab;
+    public static FABAnimator fabAnimator;
     List<PlanEntry> entries;
     RecyclerView recyclerView;
     int futurepast;

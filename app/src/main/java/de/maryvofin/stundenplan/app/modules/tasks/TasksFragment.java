@@ -58,7 +58,9 @@ public class TasksFragment extends Fragment {
 
         adapter = new TasksAdapter(entry, recyclerView);
         recyclerView.setAdapter(adapter);
-        recyclerView.addOnScrollListener(new FABAnimator(fab));
+        FABAnimator fabAnimator = new FABAnimator(fab);
+        recyclerView.addOnScrollListener(fabAnimator);
+        fabAnimator.grow();
 
         return view;
     }

@@ -15,10 +15,11 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import de.maryvofin.stundenplan.app.utils.FABAnimator;
+
 public class PlanPagerAdapter extends FragmentStatePagerAdapter {
 
     Context context;
-    FloatingActionButton fab;
 
     public PlanPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
