@@ -115,6 +115,7 @@ public class Parser {
 
 
         Element table = doc.getElementsByTag("table").first();
+        if(table == null) return; //Außerhalb der Leerzeiten ist der Stundenplan leer.
         Elements rows = table.getElementsByTag("tr");
         boolean first = true;
         String weekday = "Mo";
