@@ -69,7 +69,7 @@ public class DatabaseTest {
         db.update(InstrumentationRegistry.getContext(), list);
     }
 
-    @Test
+    /*@Test
     public void testGetTimeEvents() {
         Parser p = new Parser(InstrumentationRegistry.getContext());
         p.parse();
@@ -82,7 +82,7 @@ public class DatabaseTest {
         }
 
 
-    }
+    }*/
 
     @Test
     public void testGenerateWeekmap() {
