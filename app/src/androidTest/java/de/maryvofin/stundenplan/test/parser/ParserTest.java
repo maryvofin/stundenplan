@@ -11,12 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import de.maryvofin.stundenplan.app.database.Semester;
 import de.maryvofin.stundenplan.app.parser.Parser;
 
-
-/**
- * Created by mark on 28.09.2015.
- */
 @RunWith(AndroidJUnit4.class)
 public class ParserTest extends InstrumentationTestCase {
 
@@ -35,14 +32,19 @@ public class ParserTest extends InstrumentationTestCase {
     }
 
 
-    /*@Test
+    @Test
     public void parserTest_Complete() {
         parser.parse();
         while(parser.isParsing());
 
         Assert.assertFalse(parser.getSemesters().isEmpty());
-        Assert.assertEquals("Anzahl Semester",16,parser.getSemesters().size());
-    }*/
+        int count = 0;
+        for (Semester s : parser.getSemesters()) {
+            count += s.getEntries().size();
+        }
+        Assert.assertTrue(count > 0);
+
+    }
 
 
 
