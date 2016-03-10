@@ -2,6 +2,8 @@ package de.maryvofin.stundenplan.app.parser;
 
 import android.content.Context;
 
+import junit.framework.Assert;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,11 +31,12 @@ public class Parser {
     private Pattern eventPattern = Pattern.compile("^(.*)\\((.*)\\)");
 
     public final String homePageUrl = "https://eva2.inf.h-brs.de/stundenplan/";
+    public final String term = "75e2f3b88fa531f82ba71ebc3e7b55e7";
     private String weeks = "";
     private boolean error = false;
     private Context context;
     private List<Semester> semesters = new LinkedList<>();
-    private Document doc;
+    private Document doc = null;
     private static final String SELECT_SEMESTER = "identifier_semester";
     private static final String SELECT_WEEKS = "input_weeks";
     private Connection con;
@@ -53,12 +56,20 @@ public class Parser {
         return error;
     }
 
+    public Document getDoc() {
+        return doc;
+    }
+
+    public void receiveStartpage() throws IOException{
+        con = Jsoup.connect(homePageUrl);
+        doc = con.get();
+    }
+
     synchronized public void parse()  {
 
         try {
             parsing = true;
-            con = Jsoup.connect(homePageUrl);
-            doc = con.get();
+            receiveStartpage();
             generateSemesterList();
 
             //Alle bekannten Semester parsen
@@ -84,8 +95,10 @@ public class Parser {
         return semesters;
     }
 
-    protected void generateSemesterList() throws SQLException {
+    public void generateSemesterList() throws SQLException, IOException {
         List<Semester> semesterList = new ArrayList<>();
+
+        if (doc == null) receiveStartpage();
 
         Element e = doc.getElementById(SELECT_WEEKS);
         weeks = e.getElementsByTag("option").first().attr("value").replaceAll(";", "%3B");
@@ -97,8 +110,8 @@ public class Parser {
             if(value.equals("")) continue;
             Semester s = new Semester();
 
-            String url = "https://eva2.inf.h-brs.de/stundenplan/anzeigen/?weeks={WEEKS}&days=1-7&mode=table&identifier_semester={SEMESTER}&show_semester=&identifier_dozent=&identifier_raum=&term=a9aff3b9d154e7ed04f62222c86ddb4e";
-            url = url.replace("{WEEKS}",weeks).replace("{SEMESTER}",value);
+            String url = "https://eva2.inf.h-brs.de/stundenplan/anzeigen/?weeks={WEEKS}&days=1-7&mode=table&identifier_semester={SEMESTER}&show_semester=&identifier_dozent=&identifier_raum=&term={TERM}";
+            url = url.replace("{WEEKS}",weeks).replace("{SEMESTER}",value).replace("{TERM}",term);
             s.setName(option.html());
             s.setUrl(url);
             semesterList.add(s);
@@ -108,14 +121,15 @@ public class Parser {
 
     }
 
-    protected void generateSemesterData(Semester semester) throws IOException {
+    public void generateSemesterData(Semester semester) throws IOException {
         con = Jsoup.connect(semester.getUrl());
         doc = con.get();
 
-
+        if (doc == null) throw new AssertionError("doc sollte nicht null sein. URL richtig?");
 
         Element table = doc.getElementsByTag("table").first();
-        if(table == null) return; //Außerhalb der Leerzeiten ist der Stundenplan leer.
+        if (table == null) throw new AssertionError("table sollte nicht null sein. URL richtig?\nURL "+semester.getUrl()+"\ndoc Inhalt:\n "+doc.toString());
+
         Elements rows = table.getElementsByTag("tr");
         boolean first = true;
         String weekday = "Mo";

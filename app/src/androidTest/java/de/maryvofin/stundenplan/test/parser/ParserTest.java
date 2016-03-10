@@ -11,6 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import de.maryvofin.stundenplan.app.database.Semester;
 import de.maryvofin.stundenplan.app.parser.Parser;
 
@@ -31,6 +34,34 @@ public class ParserTest extends InstrumentationTestCase {
         Assert.assertFalse("Parsed Weeks: "+parser.getWeeks(),parser.getWeeks() == "");
     }
 
+    @Test
+    public void testReceiveStartpage() throws IOException {
+        Assert.assertTrue(parser.getDoc() == null);
+        parser.receiveStartpage();
+        Assert.assertTrue(parser.getDoc() != null);
+    }
+
+    @Test
+    public void testGenerateSemesterList() throws IOException, SQLException {
+        Assert.assertTrue(parser.getSemesters().isEmpty());
+        parser.generateSemesterList();
+        Assert.assertTrue(parser.getSemesters().size() > 0);
+        Assert.assertTrue(parser.getSemesters().get(0).getUrl().length() > 10);
+    }
+
+    @Test
+    public void testGenerateSemesterData() throws IOException, SQLException {
+        parser.generateSemesterList();
+        int ecount = 0;
+        int mcount = 0;
+        for(Semester s: parser.getSemesters()) {
+            parser.generateSemesterData(s);
+            ecount += s.getEntries().size();
+            mcount += s.getModules().size();
+        }
+        Assert.assertTrue("Keine Module gefunden",mcount > 0);
+        Assert.assertTrue("Keine Veranstaltungen gefunden",ecount > 0);
+    }
 
     @Test
     public void parserTest_Complete() {
