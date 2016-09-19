@@ -31,7 +31,7 @@ public class Parser {
     private Pattern eventPattern = Pattern.compile("^(.*)\\((.*)\\)");
 
     public final String homePageUrl = "https://eva2.inf.h-brs.de/stundenplan/";
-    public final String term = "75e2f3b88fa531f82ba71ebc3e7b55e7";
+    public final String term = "5efa12280f71704a3f84dc39fe53b5c";
     private String weeks = "";
     private boolean error = false;
     private Context context;
