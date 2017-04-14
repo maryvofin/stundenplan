@@ -1,5 +1,12 @@
 package de.maryvofin.stundenplan.test.parser;
 
+import android.support.test.InstrumentationRegistry;
+import android.test.AndroidTestCase;
+
+import com.orm.SchemaGenerator;
+import com.orm.SugarContext;
+import com.orm.SugarDb;
+
 import junit.framework.Assert;
 
 import org.junit.Before;
@@ -7,7 +14,6 @@ import org.junit.Test;
 
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
-import info.quantumflux.QuantumFlux;
 
 public class TaskTest {
 
@@ -21,7 +27,12 @@ public class TaskTest {
 
     @Before
     public void setUp() {
-        QuantumFlux.deleteAll(Task.class);
+
+        SugarContext.terminate();
+        SchemaGenerator schemaGenerator = new SchemaGenerator(InstrumentationRegistry.getContext());
+        schemaGenerator.deleteTables(new SugarDb(InstrumentationRegistry.getContext()).getDB());
+        SugarContext.init(InstrumentationRegistry.getContext());
+        schemaGenerator.createDatabase(new SugarDb(InstrumentationRegistry.getContext()).getDB());
 
         long twoMinutes = 2000*60;
         long fiveMinutes = 5000*60;

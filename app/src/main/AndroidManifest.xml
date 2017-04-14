@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -35,15 +35,10 @@
             </intent-filter>
         </activity>
 
-        <meta-data android:name="AUTHORITY" android:value="de.maryvofin.stundenplan.app" />
-        <meta-data android:name="DATABASE_NAME" android:value="database.sqlite" />
-        <meta-data android:name="DATABASE_VERSION" android:value="2" />
-        <meta-data android:name="PACKAGE_NAME" android:value="de.maryvofin.stundenplan.app" />
-
-        <provider
-            android:name="info.quantumflux.provider.QuantumFluxContentProvider"
-            android:authorities="de.maryvofin.stundenplan.app"
-            android:exported="false" />
+        <meta-data android:name="DATABASE" android:value="database.sqlite" />
+        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="de.maryvofin.stundenplan.app" />
 
     </application>
 

@@ -1,11 +1,8 @@
 package de.maryvofin.stundenplan.app.modules.plan;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,15 +13,11 @@ import android.support.v4.view.ClickablePagerTabStrip;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
-import android.widget.TextView;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
-import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import de.maryvofin.stundenplan.app.R;
 import de.maryvofin.stundenplan.app.utils.FABAnimator;
@@ -35,6 +28,9 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     PlanPagerAdapter planPagerAdapter;
     View view;
 
+    public MainFragment() {
+        super();
+    }
 
     @Nullable
     @Override
@@ -128,34 +124,38 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
         setAdapter();
     }
 
-
     public void showSelectDayDialog() {
         final ViewPager viewPager = (ViewPager)view.findViewById(R.id.pager);
-        final Activity a = getActivity();
-
         final Calendar cCal = Calendar.getInstance();
         cCal.add(Calendar.DAY_OF_YEAR,viewPager.getCurrentItem()-500);
 
-        DialogFragment ds = new DialogFragment() {
-            @Override
-            public Dialog onCreateDialog(Bundle savedInstanceState) {
-                return new DatePickerDialog(a, new DatePickerDialog.OnDateSetListener() {
+        SelectDayDialogFragment ds = new SelectDayDialogFragment();
+        Bundle b = new Bundle();
+        b.putInt(SelectDayDialogFragment.BUNDLEKEY_DAY, cCal.get(Calendar.DAY_OF_MONTH));
+        b.putInt(SelectDayDialogFragment.BUNDLEKEY_MONTH, cCal.get(Calendar.MONTH));
+        b.putInt(SelectDayDialogFragment.BUNDLEKEY_YEAR, cCal.get(Calendar.YEAR));
+        ds.setArguments(b);
+        ds.setTargetFragment(this, SelectDayDialogFragment.ACTIVITY_RESULT_KEY);
 
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        Calendar nCal = Calendar.getInstance();
-                        nCal.set(Calendar.YEAR,year);
-                        nCal.set(Calendar.MONTH,monthOfYear);
-                        nCal.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                        long timeDelta = nCal.getTimeInMillis() - cCal.getTimeInMillis();
-                        int dayDelta = (int)(timeDelta / (60000*60*24));
-                        viewPager.setCurrentItem(viewPager.getCurrentItem()+dayDelta);
+        ds.show(getActivity().getSupportFragmentManager(),"datepicker");
+    }
 
-                    }
-                },cCal.get(Calendar.YEAR),cCal.get(Calendar.MONTH),cCal.get(Calendar.DAY_OF_MONTH));
-            }
-        };
-        ds.show(getActivity().getFragmentManager(),"datepicker");
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SelectDayDialogFragment.ACTIVITY_RESULT_KEY && resultCode == SelectDayDialogFragment.ACTIVITY_RESULT_KEY) {
+            long time = data.getLongExtra(SelectDayDialogFragment.INTENTKEY_TIME, 0);
+
+            final ViewPager viewPager = (ViewPager)view.findViewById(R.id.pager);
+            final Calendar cCal = Calendar.getInstance();
+            cCal.add(Calendar.DAY_OF_YEAR,viewPager.getCurrentItem()-500);
+
+            long timeDelta = time - cCal.getTimeInMillis();
+            int dayDelta = (int)(timeDelta / (60000*60*24));
+            viewPager.setCurrentItem(viewPager.getCurrentItem()+dayDelta);
+        }
+
     }
 
     public boolean backPressed() {

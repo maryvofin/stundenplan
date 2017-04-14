@@ -224,7 +224,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     task.save();
                 }
                 else {
-                    task.update();
+                    task.save();
                 }
                 finish();
                 return true;

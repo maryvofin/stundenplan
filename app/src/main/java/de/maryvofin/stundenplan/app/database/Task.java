@@ -1,14 +1,17 @@
 package de.maryvofin.stundenplan.app.database;
 
 
+import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import info.quantumflux.model.QuantumFluxRecord;
-import info.quantumflux.model.query.Select;
 
-public class Task extends QuantumFluxRecord<Task> implements Comparable<Task>{
+public class Task extends SugarRecord implements Comparable<Task>, Serializable{
 
     public int entryReference;
     public long deadline = System.currentTimeMillis();
@@ -28,15 +31,15 @@ public class Task extends QuantumFluxRecord<Task> implements Comparable<Task>{
 
 
     public static List<Task> findUncompletedTasks() {
-        return Select.from(Task.class).whereEquals("completed",false).queryAsList();
+        return Select.from(Task.class).where(Condition.prop("completed").eq("false")).list();
     }
 
     public static List<Task> findCompletedTasks() {
-        return Select.from(Task.class).whereEquals("completed",true).queryAsList();
+        return Select.from(Task.class).where(Condition.prop("completed").eq("true")).list();
     }
 
     public static List<Task> findByEntryReference(int value) {
-        return Select.from(Task.class).whereEquals("entryReference",value).queryAsList();
+        return Select.from(Task.class).where(Condition.prop("entryReference").eq(value)).list();
     }
 
     public static List<Task> findCriticalTasks() {

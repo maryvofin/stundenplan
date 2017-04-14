@@ -136,6 +136,7 @@ public class PagerTitleStripV22 extends ViewGroup implements ViewPager.Decor {
             setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         }
         if (a.hasValue(2)) {
+            @SuppressWarnings("ResourceType")
             final int textColor = a.getColor(2, 0);
             mPrevText.setTextColor(textColor);
             mCurrText.setTextColor(textColor);
