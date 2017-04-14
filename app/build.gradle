@@ -8,8 +8,8 @@ android {
         applicationId "de.maryvofin.stundenplan.app"
         minSdkVersion 16
         targetSdkVersion 23
-        //versionCode 18
-        versionCode System.getenv("BUILD_NUMBER") as Integer ?: 0
+        versionCode 90
+        //versionCode System.getenv("BUILD_NUMBER") as Integer ?: 0
         versionName "1.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
