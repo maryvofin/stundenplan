@@ -31,11 +31,11 @@ public class Task extends SugarRecord implements Comparable<Task>, Serializable{
 
 
     public static List<Task> findUncompletedTasks() {
-        return Select.from(Task.class).where(Condition.prop("completed").eq("false")).list();
+        return Select.from(Task.class).where(Condition.prop("completed").eq("0")).list();
     }
 
     public static List<Task> findCompletedTasks() {
-        return Select.from(Task.class).where(Condition.prop("completed").eq("true")).list();
+        return Select.from(Task.class).where(Condition.prop("completed").eq("1")).list();
     }
 
     public static List<Task> findByEntryReference(int value) {
