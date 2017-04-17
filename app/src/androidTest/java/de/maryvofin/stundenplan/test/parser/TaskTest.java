@@ -28,11 +28,7 @@ public class TaskTest {
     @Before
     public void setUp() {
 
-        SugarContext.terminate();
-        SchemaGenerator schemaGenerator = new SchemaGenerator(InstrumentationRegistry.getContext());
-        schemaGenerator.deleteTables(new SugarDb(InstrumentationRegistry.getContext()).getDB());
-        SugarContext.init(InstrumentationRegistry.getContext());
-        schemaGenerator.createDatabase(new SugarDb(InstrumentationRegistry.getContext()).getDB());
+        Task.deleteAll(Task.class);
 
         long twoMinutes = 2000*60;
         long fiveMinutes = 5000*60;
@@ -72,6 +68,11 @@ public class TaskTest {
         t2.save();
         t3.save();
         t4.save();
+    }
+
+    @Test()
+    public void testFindTasks() {
+        assert(Task.count(Task.class) == 4);
     }
 
     @Test
