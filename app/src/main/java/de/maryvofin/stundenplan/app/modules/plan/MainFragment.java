@@ -146,16 +146,18 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
 
         if (requestCode == SelectDayDialogFragment.ACTIVITY_RESULT_KEY && resultCode == SelectDayDialogFragment.ACTIVITY_RESULT_KEY) {
             long time = data.getLongExtra(SelectDayDialogFragment.INTENTKEY_TIME, 0);
-
-            final ViewPager viewPager = (ViewPager)view.findViewById(R.id.pager);
-            final Calendar cCal = Calendar.getInstance();
-            cCal.add(Calendar.DAY_OF_YEAR,viewPager.getCurrentItem()-500);
-
-            long timeDelta = time - cCal.getTimeInMillis();
-            int dayDelta = (int)(timeDelta / (60000*60*24));
-            viewPager.setCurrentItem(viewPager.getCurrentItem()+dayDelta);
+            final ViewPager viewPager = getViewPager();
+            viewPager.setCurrentItem(calculatePage(time));
         }
 
+    }
+
+    private static int calculatePage(long time) {
+        final Calendar currentCal = Calendar.getInstance();
+        long currentTime = currentCal.getTimeInMillis();
+        long timeDelta = time - currentTime;
+        int dayDelta = (int)(timeDelta / (60000*60*24));
+        return 500 + dayDelta;
     }
 
     public boolean backPressed() {
