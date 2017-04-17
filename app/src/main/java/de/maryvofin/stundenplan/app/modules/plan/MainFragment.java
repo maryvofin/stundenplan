@@ -125,9 +125,10 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
     }
 
     public void showSelectDayDialog() {
-        final ViewPager viewPager = (ViewPager)view.findViewById(R.id.pager);
+        final ViewPager viewPager = getViewPager();
         final Calendar cCal = Calendar.getInstance();
-        cCal.add(Calendar.DAY_OF_YEAR,viewPager.getCurrentItem()-500);
+        setCalendarToDayStart(cCal);
+        cCal.setTimeInMillis(calculateTimeFromPage(viewPager.getCurrentItem()));
 
         SelectDayDialogFragment ds = new SelectDayDialogFragment();
         Bundle b = new Bundle();
@@ -154,10 +155,25 @@ public class MainFragment extends Fragment implements android.support.v4.view.Vi
 
     private static int calculatePage(long time) {
         final Calendar currentCal = Calendar.getInstance();
+        setCalendarToDayStart(currentCal);
         long currentTime = currentCal.getTimeInMillis();
         long timeDelta = time - currentTime;
         int dayDelta = (int)(timeDelta / (60000*60*24));
         return 500 + dayDelta;
+    }
+
+    private static long calculateTimeFromPage(int page) {
+        final Calendar currentCal = Calendar.getInstance();
+        setCalendarToDayStart(currentCal);
+        currentCal.add(Calendar.DAY_OF_YEAR, page-500);
+        return currentCal.getTimeInMillis();
+    }
+
+    private static void setCalendarToDayStart(Calendar cal) {
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
     }
 
     public boolean backPressed() {

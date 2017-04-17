@@ -72,7 +72,7 @@ public class TaskTest {
 
     @Test()
     public void testFindTasks() {
-        assert(Task.count(Task.class) == 4);
+        Assert.assertEquals(4,Task.count(Task.class));
     }
 
     @Test

@@ -25,7 +25,7 @@ public class SelectDayDialogFragment extends DialogFragment implements DatePicke
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         int year = this.getArguments().getInt(BUNDLEKEY_YEAR);
         int month = this.getArguments().getInt(BUNDLEKEY_MONTH);
-        int day = this.getArguments().getInt(BUNDLEKEY_YEAR);
+        int day = this.getArguments().getInt(BUNDLEKEY_DAY);
 
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
@@ -37,6 +37,10 @@ public class SelectDayDialogFragment extends DialogFragment implements DatePicke
         nCal.set(Calendar.YEAR,year);
         nCal.set(Calendar.MONTH,monthOfYear);
         nCal.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        nCal.set(Calendar.HOUR_OF_DAY, 0);
+        nCal.set(Calendar.MINUTE, 0);
+        nCal.set(Calendar.SECOND, 0);
+        nCal.set(Calendar.MILLISECOND, 0);
         long time = nCal.getTimeInMillis();
 
         Intent intent = new Intent();
