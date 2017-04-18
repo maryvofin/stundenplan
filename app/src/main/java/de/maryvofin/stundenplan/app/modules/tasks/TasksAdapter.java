@@ -67,7 +67,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
         int i = recyclerView.getChildAdapterPosition(v);
         Task task = taskList.get(i);
         Bundle extras = new Bundle();
-        extras.putSerializable("task",task);
+        extras.putString("task", task.serialize());
         Intent intent = new Intent(v.getContext(), AddTaskActivity.class);
         intent.putExtras(extras);
         v.getContext().startActivity(intent);

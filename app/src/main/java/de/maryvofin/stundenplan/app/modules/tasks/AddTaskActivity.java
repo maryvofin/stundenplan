@@ -41,8 +41,6 @@ public class AddTaskActivity extends AppCompatActivity {
 
 
     Task task = null;
-    boolean newTask = false;
-
     ArrayAdapter<CharSequence> spinnerAdapter;
 
     @Override
@@ -52,10 +50,11 @@ public class AddTaskActivity extends AppCompatActivity {
 
         Bundle args = getIntent().getExtras();
         Object ser = null;
-        if(args != null) ser = args.getSerializable("task");
+        if(args != null) {
+            ser = args.getString("task");
+        }
         if(ser != null) {
-            task = (Task)ser;
-            if(task.description.equals("")) newTask=true;
+            task = Task.deserialize((String)ser);
         }
         else {
             task = new Task();
@@ -65,7 +64,6 @@ public class AddTaskActivity extends AppCompatActivity {
             task.entryReference = 0;
             task.estimatedDuration = Task.durations[0];
             task.text = "";
-            newTask = true;
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -220,12 +218,7 @@ public class AddTaskActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_confirm:
-                if(newTask) {
-                    task.save();
-                }
-                else {
-                    task.save();
-                }
+                task.save();
                 finish();
                 return true;
             case R.id.action_abort:

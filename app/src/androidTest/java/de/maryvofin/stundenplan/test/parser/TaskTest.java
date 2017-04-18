@@ -1,16 +1,17 @@
 package de.maryvofin.stundenplan.test.parser;
 
-import android.support.test.InstrumentationRegistry;
-import android.test.AndroidTestCase;
-
-import com.orm.SchemaGenerator;
-import com.orm.SugarContext;
-import com.orm.SugarDb;
+import android.util.Base64;
 
 import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import de.maryvofin.stundenplan.app.database.PlanEntry;
 import de.maryvofin.stundenplan.app.database.Task;
@@ -79,6 +80,19 @@ public class TaskTest {
         Assert.assertEquals("Count shouldn't change", initialCount, endCount);
 
         Assert.assertEquals("Number of Completed Tasks in Database", 2, Task.findCompletedTasks().size());
+
+    }
+
+    @Test
+    public void taskSurviveSerializationTest() throws IOException, ClassNotFoundException {
+
+        String serializedTask = t1.serialize();
+
+        Task deserializedTask = Task.deserialize(serializedTask);
+
+        Assert.assertNotNull("t1 should not have id null", t1.getId());
+        Assert.assertNotNull("deserialized t1 should not have id null", deserializedTask.getId());
+        Assert.assertEquals(t1.getId(), deserializedTask.getId());
 
     }
 

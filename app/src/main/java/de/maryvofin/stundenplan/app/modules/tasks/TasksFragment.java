@@ -72,7 +72,7 @@ public class TasksFragment extends Fragment {
             task.deadline = System.currentTimeMillis();
             task.entryReference = entry.hashCode();
             Bundle extras = new Bundle();
-            extras.putSerializable("task",task);
+            extras.putString("task", task.serialize());
             intent.putExtras(extras);
         }
 

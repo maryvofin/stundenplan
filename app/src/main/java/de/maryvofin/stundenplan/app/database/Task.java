@@ -1,10 +1,18 @@
 package de.maryvofin.stundenplan.app.database;
 
 
+import android.util.Base64;
+
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -19,6 +27,9 @@ public class Task extends SugarRecord implements Comparable<Task>, Serializable{
     public String description = "";
     public long estimatedDuration =durations[0];
     public boolean completed = false;
+    @Ignore
+    private Long serializeID;
+
 
     final static long minute = 60000;
     final static long hour = 60*minute;
@@ -121,5 +132,48 @@ public class Task extends SugarRecord implements Comparable<Task>, Serializable{
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public Long getSerializeID() {
+        return serializeID;
+    }
+
+    public void setSerializeID(Long serializeID) {
+        this.serializeID = serializeID;
+    }
+
+    public String serialize() {
+        return serialize(this);
+    }
+
+    public static String serialize(Task t) {
+        t.setSerializeID(t.getId());
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(bos);
+            oos.writeObject(t);
+            oos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String serializedTask = new String(Base64.encode(bos.toByteArray(),Base64.DEFAULT));
+        return serializedTask;
+    }
+
+    public static Task deserialize(String task)  {
+        ByteArrayInputStream bis = new ByteArrayInputStream(Base64.decode(task.getBytes(), Base64.DEFAULT));
+        ObjectInputStream ois = null;
+        Task deserializedTask = null;
+        try {
+            ois = new ObjectInputStream(bis);
+            deserializedTask = (Task) ois.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        deserializedTask.setId(deserializedTask.getSerializeID());
+        return deserializedTask;
     }
 }
