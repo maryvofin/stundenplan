@@ -70,6 +70,18 @@ public class TaskTest {
         t4.save();
     }
 
+    @Test
+    public void updateTaskTest() {
+        int initialCount = (int) Task.count(Task.class);
+        t1.setCompleted(true);
+        t1.save();
+        int endCount = (int) Task.count(Task.class);
+        Assert.assertEquals("Count shouldn't change", initialCount, endCount);
+
+        Assert.assertEquals("Number of Completed Tasks in Database", 2, Task.findCompletedTasks().size());
+
+    }
+
     @Test()
     public void testFindTasks() {
         Assert.assertEquals(4,Task.count(Task.class));

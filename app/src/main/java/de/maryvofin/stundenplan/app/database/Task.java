@@ -28,8 +28,6 @@ public class Task extends SugarRecord implements Comparable<Task>, Serializable{
     public final static long durations[] = {5*minute,10*minute, 15*minute, 30*minute,hour,2*hour,5*hour,10*hour,day,2*day,3*day,5*day,week,2*week,month,2*month,3*month};
 
 
-
-
     public static List<Task> findUncompletedTasks() {
         return Select.from(Task.class).where(Condition.prop("completed").eq("0")).list();
     }
@@ -75,5 +73,53 @@ public class Task extends SugarRecord implements Comparable<Task>, Serializable{
     @Override
     public int compareTo(Task another) {
         return (int)((deadline-estimatedDuration) - (another.deadline-another.estimatedDuration));
+    }
+
+    public int getEntryReference() {
+        return entryReference;
+    }
+
+    public void setEntryReference(int entryReference) {
+        this.entryReference = entryReference;
+    }
+
+    public long getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(long deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getEstimatedDuration() {
+        return estimatedDuration;
+    }
+
+    public void setEstimatedDuration(long estimatedDuration) {
+        this.estimatedDuration = estimatedDuration;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }
