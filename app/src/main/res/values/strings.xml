@@ -63,7 +63,7 @@
     <string name="text_dialog_info_contact_header">Kontakt:</string>
     <string name="text_dialog_info_contact_text">mark.freiberg@maryvofin.de</string>
     <string name="text_dialog_info_hints_header">Hinweise:</string>
-    <string name="text_dialog_info_hints_text">Diese App findet sich noch in der Entwicklung. Per Email oder Absturzbericht eingereichte Fehler werden nach möglichkeit zeitnah behoben.</string>
+    <string name="text_dialog_info_hints_text">Diese App findet sich noch in der Entwicklung. Per Email oder Absturzbericht eingereichte Fehler werden nach Möglichkeit zeitnah behoben.</string>
     <string name="text_dialog_info_button">OK</string>
 
     <string name="activity_title_settings">Einstellungen</string>

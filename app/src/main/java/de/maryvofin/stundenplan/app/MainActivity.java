@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements ProgressDialog.On
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
                     public boolean onProfileChanged(View view, IProfile profile, boolean current) {
-                        switch (profile.getIdentifier()) {
+                        switch ((int)profile.getIdentifier()) {
                             case IDENTIFIER_ADD_PROFILE:
                                 showNewProfileDialog();
                                 break;
